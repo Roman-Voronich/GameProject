@@ -8,3 +8,6 @@ class test
   Console.Write("Hello World");
 }
 ```
+```c++
+#include<bits/stdc++>
+```
