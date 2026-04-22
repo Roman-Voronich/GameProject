@@ -57,9 +57,9 @@ public partial class Player : Node2D
 		if (Input.IsActionJustPressed("ui_mouse_scroll_up"))
 			cameraZoom = Math.Min(cameraZoom * 1.25f, 2f);
 		
-		camera.Zoom = new Vector2(1, 1) * cameraZoom;
+		camera.Zoom += new Vector2(1, 1) * (cameraZoom - camera.Zoom.X) * 0.2f;
 		direction.Normalized();
 
-		Position += direction * Speed / cameraZoom;
+		Position += direction * Speed / camera.Zoom;
 	}
 }
