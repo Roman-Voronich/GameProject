@@ -20,7 +20,7 @@ public partial class Player : Node2D
 		cameraSize = GetTree().Root.Size;
 	}
 
-    public override void _Input(InputEvent @event)
+	public override void _Input(InputEvent @event)
 	{
 		if (@event.IsActionPressed("ui_change_mode"))
 			changeMode();
