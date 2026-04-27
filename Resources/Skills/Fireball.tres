@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://fjct8qvle8vb"]
+
+[ext_resource type="Texture2D" uid="uid://cjqr0qmo7gwg7" path="res://Textures/fireball.jpeg" id="1_fgwv5"]
+[ext_resource type="Script" uid="uid://bgd3mykhx0qcg" path="res://Scripts/Resources/SkillData.cs" id="2_vbo1v"]
+
+[resource]
+script = ExtResource("2_vbo1v")
+Name = "Fireball"
+Icon = ExtResource("1_fgwv5")
+CooldownSeconds = 5.0
+metadata/_custom_type_script = "uid://bgd3mykhx0qcg"

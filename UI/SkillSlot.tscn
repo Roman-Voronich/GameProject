@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://obfj33ss00nf"]
+
+[ext_resource type="Script" uid="uid://bwh1qte1b03uh" path="res://UI/SkillSlot.cs" id="1_4ec8i"]
+
+[node name="SkillSlot" type="Button" unique_id=668478289]
+custom_minimum_size = Vector2(64, 64)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_4ec8i")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=1040324920]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 5
+
+[node name="CooldownLabel" type="Label" parent="." unique_id=711630697]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
