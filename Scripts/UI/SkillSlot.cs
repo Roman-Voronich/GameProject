@@ -1,8 +1,10 @@
 using Godot;
 using System;
-
 public partial class SkillSlot : Button
 {
+	
+	[Signal]
+	public delegate void SkillPressedEventHandler(SkillData skill);
 	private TextureRect _iconRect;
 	private Label _cooldownLabel;
 	private SkillData _data;
@@ -24,7 +26,7 @@ public partial class SkillSlot : Button
 	{
 		if (_data != null)
 		{
-			GD.Print(_data.Name + " pressed");
+			EmitSignal(SignalName.SkillPressed, _data);
 		}
 	}
 }

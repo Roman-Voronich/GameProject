@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://obfj33ss00nf"]
 
-[ext_resource type="Script" uid="uid://bwh1qte1b03uh" path="res://UI/SkillSlot.cs" id="1_4ec8i"]
+[ext_resource type="Script" uid="uid://bwh1qte1b03uh" path="res://Scripts/UI/SkillSlot.cs" id="1_4ec8i"]
 
 [node name="SkillSlot" type="Button" unique_id=668478289]
-custom_minimum_size = Vector2(64, 64)
+offset_right = 32.0
+offset_bottom = 32.0
 size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_vertical = 8
 script = ExtResource("1_4ec8i")
 
 [node name="Icon" type="TextureRect" parent="." unique_id=1040324920]

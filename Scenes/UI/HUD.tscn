@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://0g6akplc2mct"]
+
+[ext_resource type="Script" uid="uid://dchqvcilctgxx" path="res://Scripts/UI/SkillBar.cs" id="1_yixhe"]
+[ext_resource type="Resource" uid="uid://fjct8qvle8vb" path="res://Resources/Skills/Fireball.tres" id="2_ijstf"]
+
+[node name="Hud" type="Node2D" unique_id=1051410315]
+
+[node name="SkillBarContainer" type="HBoxContainer" parent="." unique_id=1397392120]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="SkillBar" type="Node2D" parent="." unique_id=653266709 node_paths=PackedStringArray("Container")]
+script = ExtResource("1_yixhe")
+Container = NodePath("../SkillBarContainer")
+Skills = [ExtResource("2_ijstf")]
