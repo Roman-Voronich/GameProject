@@ -8,6 +8,12 @@ public partial class MapFromNoise : TileMapLayer
     private int _width = 50;
     private int _height = 50;
     private int _seed = 10;
+    public TileInfo[] tiles = [
+        new TileInfo("grass", 0, new Vector2I(1, 0)),
+        new TileInfo("water", 0, new Vector2I(1, 1)),
+        new TileInfo("tree", 0, new Vector2I(0, 0)),
+        new TileInfo("pebbles", 0, new Vector2I(0, 1))
+    ];
 
     [Export]
     public NoiseTexture2D noiseTexture
@@ -16,8 +22,7 @@ public partial class MapFromNoise : TileMapLayer
         set
         {
             _noiseTexture = value;
-            if (Engine.IsEditorHint())
-                GenerateMap();
+            GenerateMap();
         }
     }
 
@@ -28,8 +33,7 @@ public partial class MapFromNoise : TileMapLayer
         set
         {
             _width = value;
-            if (Engine.IsEditorHint())
-                GenerateMap();
+            GenerateMap();
         }
     }
 
@@ -40,8 +44,7 @@ public partial class MapFromNoise : TileMapLayer
         set
         {
             _height = value;
-            if (Engine.IsEditorHint())
-                GenerateMap();
+            GenerateMap();
         }
     }
 
@@ -52,15 +55,14 @@ public partial class MapFromNoise : TileMapLayer
         set
         {
             _seed = value;
-            if (Engine.IsEditorHint())
-                GenerateMap();
+            GenerateMap();
         }
     }
 
     public override void _Ready()
     {
-        if (Engine.IsEditorHint())
-            GenerateMap();
+        ZIndex = -30;
+        GenerateMap();
     }
 
     private void GenerateMap()
@@ -72,10 +74,10 @@ public partial class MapFromNoise : TileMapLayer
             for (var y = 0; y < _height; y++)
             {
                 var value = noise.GetNoise2D(x, y);
-                var atlasCoords = value > 0.2 ? new Vector2I(1, 1) :
-                                  value > -0.2 ? new Vector2I(1, 0) :
-                                  new Vector2I(0, 0);
-                SetCell(new Vector2I(x, y), 0, atlasCoords);
+                var tileInfo = value > 0.2 ? tiles[1] :
+                                  value > -0.2 ? tiles[0] :
+                                  tiles[2];
+                SetCell(new Vector2I(x, y), tileInfo.atlasId, tileInfo.atlasCoord);
             }
     }
 }
