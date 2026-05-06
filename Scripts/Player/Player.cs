@@ -1,66 +1,52 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class Player : Node2D
 {
 	[Export]
-	private int Speed = 10;
-	private MapFromNoise _tileMap;
+	private int Speed = 16;
 	private Camera2D camera;
-	private Vector2I cameraSize;
 	private float cameraZoom = 1;
 	private Vector2I currentTile = new(0, 0);
 
-	private bool isBuildMode = false;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		_tileMap = GetNode<MapFromNoise>(new NodePath("../Map"));
-		camera = GetNode<Camera2D>(new NodePath("Camera2D"));
-		cameraSize = GetTree().Root.Size;
+		resourceMap = GetNode<Resource>(new NodePath("../Map/Resource"));
+		structureMap = GetNode<TileMapLayer>(new NodePath("../Map/Structure"));
+		terrianMap = GetNode<Terrian>(new NodePath("../Map/Terrian"));
+		camera = GetNode<Camera2D>(new NodePath("Camera"));
+		inventory = new Dictionary<string, int>();
+        pointer = GetNode<Pointer>(new NodePath("../Map/Pointer"));
 	}
 
     public override void _Input(InputEvent @event)
 	{
 		if (@event.IsActionPressed("ui_change_mode"))
-			changeMode();
+			ChangeMode();
+		if (isBuildMode
+			&& IsKeyJustPressed(@event, Key.E))
+			isRemoveMode = !isRemoveMode;
+		if (isBuildMode
+			&& IsKeyJustPressed(@event, Key.F))
+			isManyChange = !isManyChange;
+		if (!isBuildMode
+			&& @event.IsActionPressed("ui_left_click"))
+			resourceMap.DigResource(inventory, 1);
 	}
 
-	private void changeMap()
-	{
-		var mouseGlobalPos = camera.GetGlobalMousePosition();
-		var tilePos = _tileMap.LocalToMap(_tileMap.ToLocal(mouseGlobalPos));
-		_tileMap.SetCell(tilePos, 0, currentTile);
-	}
-
-	private void changeMode()
-	{
-		isBuildMode = !isBuildMode;
-	}
-
-	private void changeTile()
-	{
-		var x = currentTile.X;
-		var y = currentTile.Y;
-		currentTile = new Vector2I(x + 1, y + (x + 1) % 2) % 2;
-	}
-
+	private bool IsKeyJustPressed(InputEvent e, Key key) =>
+		e is InputEventKey inputKey
+		&& inputKey.Keycode == key
+		&& inputKey.Pressed;
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
 		DoMove();
 		DoZoom();
-		DoBuild();
-	}
-
-	private void DoBuild()
-	{
-		if (isBuildMode
-			&& Input.IsActionPressed("ui_left_click"))
-			changeMap();
-		if (Input.IsActionJustPressed("ui_change_tile"))
-			changeTile();
+		if (isBuildMode) DoBuild();
 	}
 
 	private void DoZoom()

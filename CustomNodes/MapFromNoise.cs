@@ -4,18 +4,18 @@ using System;
 [Tool, GlobalClass]
 public partial class MapFromNoise : TileMapLayer
 {
-    private NoiseTexture2D _noiseTexture;
-    private int _width = 50;
-    private int _height = 50;
+    private FastNoiseLite _noise;
+    private int _width = 128;
+    private int _height = 128;
     private int _seed = 10;
 
     [Export]
-    public NoiseTexture2D noiseTexture
+    public FastNoiseLite noise
     {
-        get => _noiseTexture;
+        get => _noise;
         set
         {
-            _noiseTexture = value;
+            _noise = value;
             if (Engine.IsEditorHint())
                 GenerateMap();
         }
@@ -63,19 +63,22 @@ public partial class MapFromNoise : TileMapLayer
             GenerateMap();
     }
 
-    private void GenerateMap()
+    public virtual void GenerateMap()
     {        
         Clear();
-        var noise = _noiseTexture.Noise as FastNoiseLite;
         noise.Seed = _seed;
+        var sourceId = TileSet.GetSourceId(0);
         for (var x = 0; x < _width; x++)
             for (var y = 0; y < _height; y++)
             {
                 var value = noise.GetNoise2D(x, y);
                 var atlasCoords = value > 0.2 ? new Vector2I(1, 1) :
-                                  value > -0.2 ? new Vector2I(1, 0) :
+                                  value > -0.2 ? new Vector2I(0, 0) :
                                   new Vector2I(0, 0);
-                SetCell(new Vector2I(x, y), 0, atlasCoords);
+                SetCell(new Vector2I(x, y), sourceId, atlasCoords);
             }
     }
+
+    public Vector2I GetTilePos() =>
+        LocalToMap(ToLocal(GetGlobalMousePosition()));
 }
