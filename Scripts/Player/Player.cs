@@ -19,6 +19,7 @@ public partial class Player : Node2D
 		camera = GetNode<Camera2D>(new NodePath("Camera"));
 		inventory = new Dictionary<string, int>();
         pointer = GetNode<Pointer>(new NodePath("../Map/Pointer"));
+		walkableMap = GetNode<TileMapLayer>(new NodePath("../Map/Walkable"));
 	}
 
     public override void _Input(InputEvent @event)

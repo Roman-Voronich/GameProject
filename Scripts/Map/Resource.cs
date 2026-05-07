@@ -6,18 +6,22 @@ using System.Collections.Generic;
 public partial class Resource : MapFromNoise
 {
     private TileResourceInfo[,] resources;
+    private TileMapLayer walkable;
 
     public override void _Ready()
     {
         GenerateMap();
+        walkable = GetNode<TileMapLayer>(new NodePath("../Walkable"));
     }
 
     public void DigResource(Dictionary<string, int> inventory, int damage)
     {
-        var (x, y) = GetTilePos();
+        var currTile = GetTilePos();
+        var (x, y) = currTile;
+        TileResourceInfo resource;
         try
         {
-            var resource = resources[x, y];
+            resource = resources[x, y];
             if (resource == null) return;
             resource.hp -= damage;
             if (resource.hp <= 0)
@@ -26,7 +30,8 @@ public partial class Resource : MapFromNoise
                     inventory[resource.type] += resource.count;
                 GD.Print("You dig resource");
                 GD.Print("You have ", inventory[resource.type], ' ', resource.type);
-                EraseCell(GetTilePos());
+                EraseCell(currTile);
+                walkable.SetCell(currTile, 0, Vector2I.Zero);
                 resources[x, y] = null;
             }
         }

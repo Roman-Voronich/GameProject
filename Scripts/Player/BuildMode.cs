@@ -5,6 +5,7 @@ public partial class Player
 {
     private Resource resourceMap;
 	private TileMapLayer structureMap;
+    private TileMapLayer walkableMap;
     private Terrian terrianMap;
     private bool isBuildMode = false;
     private bool isRemoveMode = false;
@@ -21,7 +22,11 @@ public partial class Player
     {
         var mouseGlobalPos = camera.GetGlobalMousePosition();
 		var tilePos = structureMap.LocalToMap(structureMap.ToLocal(mouseGlobalPos));
-        if (CanBuild(tilePos)) structureMap.SetCell(tilePos, 0, currentTile);
+        if (CanBuild(tilePos)) 
+        {
+            structureMap.SetCell(tilePos, 0, currentTile);
+            walkableMap.EraseCell(tilePos);
+        }
     }
 
     private bool CanBuild(Vector2I tilePos)
@@ -36,6 +41,7 @@ public partial class Player
     {
         var mouseGlobalPos = camera.GetGlobalMousePosition();
 		var tilePos = structureMap.LocalToMap(structureMap.ToLocal(mouseGlobalPos));
+        if (structureMap.GetCellSourceId(tilePos) != -1) walkableMap.SetCell(tilePos, 0, Vector2I.Zero);
         structureMap.EraseCell(tilePos);
     }
 

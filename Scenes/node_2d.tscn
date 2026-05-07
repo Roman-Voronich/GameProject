@@ -8,14 +8,21 @@
 [ext_resource type="TileSet" uid="uid://bhxev4rmqag1c" path="res://Resources/Resources.tres" id="7_hvaui"]
 [ext_resource type="Texture2D" uid="uid://deroatpt6qxde" path="res://TileSets/buildings.svg" id="7_v7gqg"]
 [ext_resource type="Script" uid="uid://cw3u1noi78op6" path="res://Scripts/Player/Pointer.cs" id="7_wjtap"]
+[ext_resource type="Script" uid="uid://bn3bxesafraok" path="res://Scripts/Map/Walkable.cs" id="8_chwn1"]
+[ext_resource type="TileSet" uid="uid://bamhtfbhj2ukp" path="res://Resources/Walkable.tres" id="8_hvaui"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_v7gqg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_chwn1"]
 texture = ExtResource("7_v7gqg")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+1:0/0 = 0
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_v7gqg")
 
 [sub_resource type="TileSet" id="TileSet_hvaui"]
 tile_size = Vector2i(32, 32)
+navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_chwn1")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjtap"]
@@ -41,6 +48,7 @@ script = ExtResource("3_hh5uf")
 position_smoothing_enabled = true
 
 [node name="Map" type="Node2D" parent="." unique_id=146244086]
+metadata/Size = [100, 100]
 
 [node name="Terrian" type="TileMapLayer" parent="Map" unique_id=1778688279]
 z_index = -2
@@ -61,6 +69,12 @@ metadata/_custom_type_script = "uid://bi28jnjqgia8a"
 [node name="Structure" type="TileMapLayer" parent="Map" unique_id=1103616595]
 z_index = -1
 tile_set = SubResource("TileSet_hvaui")
+
+[node name="Walkable" type="TileMapLayer" parent="Map" unique_id=503226012]
+visible = false
+z_index = 1
+tile_set = ExtResource("8_hvaui")
+script = ExtResource("8_chwn1")
 
 [node name="Pointer" type="Panel" parent="Map" unique_id=1006962477]
 offset_left = -2.0
