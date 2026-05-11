@@ -10,7 +10,6 @@
 [ext_resource type="Script" uid="uid://cw3u1noi78op6" path="res://Scripts/Player/Pointer.cs" id="7_wjtap"]
 [ext_resource type="Script" uid="uid://bn3bxesafraok" path="res://Scripts/Map/Walkable.cs" id="8_chwn1"]
 [ext_resource type="TileSet" uid="uid://bamhtfbhj2ukp" path="res://Resources/Walkable.tres" id="8_hvaui"]
-[ext_resource type="PackedScene" uid="uid://bfmyj5xhse4kj" path="res://Scenes/Melee_Mob.tscn" id="11_2ooml"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_v7gqg"]
 
@@ -84,10 +83,3 @@ offset_right = 34.0
 offset_bottom = 34.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_wjtap")
 script = ExtResource("7_wjtap")
-
-[node name="EnemyMeleeMob" parent="." unique_id=1821161301 instance=ExtResource("11_2ooml")]
-position = Vector2(302, 275)
-
-[node name="EnemyMeleeMob2" parent="." unique_id=1763050243 instance=ExtResource("11_2ooml")]
-position = Vector2(357, 442)
-Faction = 0
