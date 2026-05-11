@@ -1,6 +1,11 @@
+using Godot;
+using System;
 namespace GameProject;
 
-public class MeleeMob
+public partial class MeleeMob : Mob
 {
-    
+    public override void _Ready()
+    {
+        base._Ready();
+    }
 }

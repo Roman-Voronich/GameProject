@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://bfmyj5xhse4kj"]
+
+[ext_resource type="Script" uid="uid://7obm1x7kxoad" path="res://Scripts/MeleeMob.cs" id="1_ciheo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aq7di"]
+radius = 300.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h16wh"]
+size = Vector2(120, 120)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ykgla"]
+load_path = "res://.godot/imported/icon.svg-f434aa81383d8e7efdc588f214c40953.ctex"
+
+[node name="EnemyMeleeMob" type="CharacterBody2D" unique_id=1821161301]
+position = Vector2(-8, 14)
+script = ExtResource("1_ciheo")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1506957582]
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1952358607]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=405216611]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_aq7di")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2083507849]
+shape = SubResource("RectangleShape2D_h16wh")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=547453533]
+position = Vector2(1, 2)
+texture = SubResource("CompressedTexture2D_ykgla")
