@@ -31,16 +31,11 @@ public interface IEntity
 
 public enum EntityType
 {
-	Mob,
-	Building,
-	Decoration,
-	Resource
+	Mob
 }
 
 public enum EntityFaction
 {
 	Player,
-	Enemy,
-	Neutral,
-	Ally
+	Enemy
 }
