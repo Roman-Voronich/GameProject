@@ -1,23 +1,15 @@
 using Godot;
 using System;
 
-public partial class Walkable : TileMapLayer
+[Tool]
+public partial class WalkableMap : TileMapLayer
 {
-	[Export]
-	public int width = 128;
-	[Export]
-	public int height = 128;
-	private TileMapLayer terrian;
-	private TileMapLayer resource;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		terrian = GetNode<TileMapLayer>(new NodePath("../Terrian"));
-		resource = GetNode<TileMapLayer>(new NodePath("../Resource"));
-		GenerateMap();
 	}
 
-	private void GenerateMap()
+	public void GenerateMap(TileMapLayer terrian, TileMapLayer resource, int width, int height)
 	{
 		for (var x = 0; x < width; x++)
 			for (var y = 0; y < height; y++)
@@ -26,6 +18,7 @@ public partial class Walkable : TileMapLayer
 				if (terrian.GetCellAtlasCoords(position) != new Vector2I(1, 1)
 					&& resource.GetCellAtlasCoords(position).X == -1)
 					SetCell(position, 0, Vector2I.Zero);
+				else EraseCell(position);
 			}
 	}
 

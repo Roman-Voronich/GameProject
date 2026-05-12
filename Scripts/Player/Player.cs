@@ -9,17 +9,15 @@ public partial class Player : Node2D
 	private Camera2D camera;
 	private float cameraZoom = 1;
 	private Vector2I currentTile = new(0, 0);
+	private Structure currentStructure = new(2, 2, 1, 0);
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		resourceMap = GetNode<Resource>(new NodePath("../Map/Resource"));
-		structureMap = GetNode<TileMapLayer>(new NodePath("../Map/Structure"));
-		terrianMap = GetNode<Terrian>(new NodePath("../Map/Terrian"));
+		map = GetNode<Map>(new NodePath("../Map"));
 		camera = GetNode<Camera2D>(new NodePath("Camera"));
 		inventory = new Dictionary<string, int>();
         pointer = GetNode<Pointer>(new NodePath("../Map/Pointer"));
-		walkableMap = GetNode<TileMapLayer>(new NodePath("../Map/Walkable"));
 	}
 
     public override void _Input(InputEvent @event)
@@ -34,7 +32,7 @@ public partial class Player : Node2D
 			isManyChange = !isManyChange;
 		if (!isBuildMode
 			&& @event.IsActionPressed("ui_left_click"))
-			resourceMap.DigResource(inventory, 1);
+			map.DigResource(inventory, 1);
 	}
 
 	private bool IsKeyJustPressed(InputEvent e, Key key) =>

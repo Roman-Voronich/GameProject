@@ -15,6 +15,11 @@ run/main_scene="res://Scenes/node_2d.tscn"
 config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://Textures/icon.svg"
 
+[display]
+
+mouse_cursor/custom_image="uid://cax0q5aly2nqe"
+mouse_cursor/custom_image_hotspot=Vector2(16, 16)
+
 [dotnet]
 
 project/assembly_name="GameProject"
@@ -86,4 +91,5 @@ ui_change_tile={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
