@@ -3,59 +3,45 @@ using System;
 
 public partial class Player
 {
-    private Resource resourceMap;
-	private TileMapLayer structureMap;
-    private TileMapLayer walkableMap;
-    private Terrian terrianMap;
-    private bool isBuildMode = false;
-    private bool isRemoveMode = false;
+    private Map map;
+    public bool isBuildMode = false;
+    public bool isRemoveMode = false;
     private bool isManyChange = false;
     private Pointer pointer;
 
     private void ChangeMap()
 	{
-        if (isRemoveMode) RemoveTile();
-		else BuildTile();
+        if (isRemoveMode) DestroyStructure();
+		else BuildStructure();
 	}
 
-    private void BuildTile()
+    private void BuildStructure()
     {
-        var mouseGlobalPos = camera.GetGlobalMousePosition();
-		var tilePos = structureMap.LocalToMap(structureMap.ToLocal(mouseGlobalPos));
-        if (CanBuild(tilePos)) 
-        {
-            structureMap.SetCell(tilePos, 0, currentTile);
-            walkableMap.EraseCell(tilePos);
-        }
+        var temp = GetGlobalMousePosition() - new Vector2I(currentStructure.Width - 1, currentStructure.Height - 1) * 16;
+        var startPos = map.GlobalToMap(temp);
+        map.TryBuildStructure(currentStructure, startPos);
     }
 
-    private bool CanBuild(Vector2I tilePos)
+    private void DestroyStructure()
     {
-        return structureMap.GetCellSourceId(tilePos) == -1
-            && resourceMap.GetCellSourceId(tilePos) == -1
-            && terrianMap.GetCellSourceId(tilePos) != -1
-            && terrianMap.GetCellAtlasCoords(tilePos) != new Vector2I(1, 1);
+        var pos = map.GetTilePos();
+        var si = map.GetStructureInfo(pos);
+        if (si.Z == 0) return;
+        map.DestroyStructure(new Vector2I(si.X, si.Y), si.Z, si.W);
     }
 
-    private void RemoveTile()
-    {
-        var mouseGlobalPos = camera.GetGlobalMousePosition();
-		var tilePos = structureMap.LocalToMap(structureMap.ToLocal(mouseGlobalPos));
-        if (structureMap.GetCellSourceId(tilePos) != -1) walkableMap.SetCell(tilePos, 0, Vector2I.Zero);
-        structureMap.EraseCell(tilePos);
-    }
-
-    private void ChangeMode()
+    public void ChangeMode()
     {
         isRemoveMode = false;
         isManyChange = false;
         isBuildMode = !isBuildMode;
-        pointer.ChangeColor(isBuildMode, isRemoveMode);
+        if (isBuildMode) pointer.ChangePointer(currentStructure);
+        else pointer.ResetPointer();
     }
 
     private void DoBuild()
 	{
-        pointer.ChangeColor(isBuildMode, isRemoveMode);
+        pointer.ChangeMode(isRemoveMode, currentStructure);
 		if (Input.IsActionJustPressed("ui_left_click")
             || (isManyChange
                 && Input.IsActionPressed("ui_left_click"))

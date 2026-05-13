@@ -2,13 +2,12 @@ using Godot;
 using System;
 
 [Tool]
-public partial class Terrian : MapFromNoise
+public partial class TerrianMap : CustomMapLayer
 {
-	// Called when the node enters the scene tree for the first time.
+    // Called when the node enters the scene tree for the first time.
 
-    public override void GenerateMap()
+    public void GenerateMap(int width, int height, FastNoiseLite noise, int seed)
     {
-        Clear();
         noise.Seed = seed;
         var sourceId = TileSet.GetSourceId(0);
         for (var x = 0; x < width; x++)
@@ -21,6 +20,7 @@ public partial class Terrian : MapFromNoise
 								: new Vector2I(1, 1);
                 SetCell(new Vector2I(x, y), sourceId, atlasCoords);
             }
+        GD.Print("Terrian Generated");
     }
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
