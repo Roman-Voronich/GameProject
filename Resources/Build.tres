@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://y85cvsu87flr"]
+
+[ext_resource type="Texture2D" uid="uid://bqbfywx28wg1j" path="res://Textures/build.png" id="1_8sgu6"]
+[ext_resource type="Script" uid="uid://ccc2txubi4sjk" path="res://Scripts/UI/SkillData.cs" id="1_ags7n"]
+
+[resource]
+script = ExtResource("1_ags7n")
+Name = "Build"
+Icon = ExtResource("1_8sgu6")
+metadata/_custom_type_script = "uid://ccc2txubi4sjk"

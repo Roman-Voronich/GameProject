@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://b6bmbxxvhaep1"]
+
+[ext_resource type="Script" uid="uid://ij3ukitqcygi" path="res://Scripts/UI/SkillSlot.cs" id="1_swqdu"]
+
+[sub_resource type="Theme" id="Theme_swqdu"]
+Button/colors/icon_hover_color = Color(1, 1, 1, 0.37254903)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(0.5686275, 0.58431375, 0.58431375, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_swqdu"]
+line_spacing = 10.0
+font_size = 24
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="SkillSlot" type="Button" unique_id=741914709]
+z_index = 1
+custom_minimum_size = Vector2(128, 128)
+theme = SubResource("Theme_swqdu")
+expand_icon = true
+script = ExtResource("1_swqdu")
+
+[node name="Keybind" type="Label" parent="." unique_id=1084779522]
+z_index = 2
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -20.0
+offset_bottom = 14.0
+grow_horizontal = 2
+label_settings = SubResource("LabelSettings_swqdu")
+horizontal_alignment = 1
+uppercase = true
+
+[node name="CooldownOverlay" type="ColorRect" parent="." unique_id=836718880]
+z_index = 3
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2784314, 0.2784314, 0.2784314, 1)
+
+[node name="Icon" type="TextureRect" parent="." unique_id=767652382]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
