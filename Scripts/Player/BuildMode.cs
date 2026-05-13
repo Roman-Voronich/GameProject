@@ -4,8 +4,8 @@ using System;
 public partial class Player
 {
     private Map map;
-    private bool isBuildMode = false;
-    private bool isRemoveMode = false;
+    public bool isBuildMode = false;
+    public bool isRemoveMode = false;
     private bool isManyChange = false;
     private Pointer pointer;
 
@@ -30,7 +30,7 @@ public partial class Player
         map.DestroyStructure(new Vector2I(si.X, si.Y), si.Z, si.W);
     }
 
-    private void ChangeMode()
+    public void ChangeMode()
     {
         isRemoveMode = false;
         isManyChange = false;
