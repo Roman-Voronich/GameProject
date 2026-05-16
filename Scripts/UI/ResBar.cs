@@ -30,6 +30,7 @@ public partial class ResBar : HBoxContainer
 			slot.Setup(res,0); //Потом доставать из инвентаря, по сигналу изменения вызывать Update
 		}
 	}
+
 	public override void _Process(double delta)
 	{
 	}
