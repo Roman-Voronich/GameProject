@@ -1,15 +1,15 @@
 [gd_scene format=3 uid="uid://j38luk52oyea"]
 
 [ext_resource type="Script" uid="uid://xnmlnh4ihc5o" path="res://Scripts/UI/SkillBar.cs" id="1_b6ssh"]
-[ext_resource type="Resource" uid="uid://y85cvsu87flr" path="res://Resources/Build.tres" id="2_o0phd"]
-[ext_resource type="Resource" uid="uid://bl7bpd5k5gbx1" path="res://Resources/Destroy.tres" id="3_o0phd"]
+[ext_resource type="Resource" uid="uid://y85cvsu87flr" path="res://Resources/Skills/Build.tres" id="2_o0phd"]
+[ext_resource type="Resource" uid="uid://bl7bpd5k5gbx1" path="res://Resources/Skills/Destroy.tres" id="3_o0phd"]
 
 [node name="SkillBar" type="HBoxContainer" unique_id=1372024372 groups=["SkillBar"]]
 offset_right = 1000.0
 offset_bottom = 1000.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_constants/separation = 64
+theme_override_constants/separation = 31
 alignment = 1
 script = ExtResource("1_b6ssh")
 Skills = [ExtResource("2_o0phd"), ExtResource("3_o0phd")]
