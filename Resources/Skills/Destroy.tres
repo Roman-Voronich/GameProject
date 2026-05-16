@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SkillData" format=3 uid="uid://bl7bpd5k5gbx1"]
 
-[ext_resource type="Script" uid="uid://ccc2txubi4sjk" path="res://Scripts/UI/SkillData.cs" id="1_hw2t6"]
+[ext_resource type="Script" uid="uid://ccc2txubi4sjk" path="res://Scripts/Datas/SkillData.cs" id="1_hw2t6"]
 [ext_resource type="Texture2D" uid="uid://cinwlp208t50t" path="res://Textures/Destroy.png" id="1_p634e"]
 
 [resource]

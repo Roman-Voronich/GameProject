@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cl42gglqymd8v"]
+
+[ext_resource type="Script" uid="uid://cdbjn2rxl4knq" path="res://Scripts/UI/ResBar.cs" id="1_sn3uy"]
+[ext_resource type="Resource" uid="uid://0ng562bnwie7" path="res://Resources/Resources/WoodRes.tres" id="2_xfctj"]
+[ext_resource type="Resource" uid="uid://qd55uj47oml6" path="res://Resources/Resources/StoneRes.tres" id="3_ldd0l"]
+[ext_resource type="Resource" uid="uid://bu0h3slgqo801" path="res://Resources/Resources/CopperRes.tres" id="4_jttef"]
+[ext_resource type="Resource" uid="uid://b6eiy1oxfiejp" path="res://Resources/Resources/IronRes.tres" id="5_ui301"]
+[ext_resource type="PackedScene" uid="uid://cbtsmyuqdhi86" path="res://Scenes/UI/ResSlot.tscn" id="6_lwxb1"]
+
+[node name="ResBar" type="HBoxContainer" unique_id=597616259]
+theme_override_constants/separation = 0
+script = ExtResource("1_sn3uy")
+Resources = Array[Object]([ExtResource("2_xfctj"), ExtResource("3_ldd0l"), ExtResource("4_jttef"), ExtResource("5_ui301")])
+SlotScene = ExtResource("6_lwxb1")
