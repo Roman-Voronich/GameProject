@@ -3,16 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://dbduw13ghmf7b" path="res://TileSets/terrian.svg" id="1_pqqm1"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_wh6b0"]
-vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)])
-agent_radius = 0.0
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ycfxt"]
-vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-16, 16, 16, 16, 16, -16, -16, -16)])
-agent_radius = 0.0
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_qgp6v"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ea1v3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wh6b0"]
 texture = ExtResource("1_pqqm1")
@@ -20,9 +16,11 @@ texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_wh6b0")
 0:1/0 = 0
+0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_ycfxt")
 1:1/0 = 0
+1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_ea1v3")
 1:0/0 = 0
-1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_ycfxt")
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_qgp6v")
 
 [resource]
 tile_size = Vector2i(32, 32)

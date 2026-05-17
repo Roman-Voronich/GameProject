@@ -12,12 +12,12 @@ public interface IEntity
 	Node2D EntityNode { get; }
     
 	// ---- Здоровье ----
-	float MaxHealth { get; }
+	int MaxHealth { get; }
 	float CurrentHealth { get; }
 	bool IsAlive { get; }
     
-	void TakeDamage(float amount, IEntity source = null);
-	void Heal(float amount);
+	void TakeDamage(int amount, IEntity source = null);
+	void Heal(int amount);
     
 	// ---- Фракция ----
 	EntityFaction Faction { get; }

@@ -1,18 +1,17 @@
 [gd_scene format=3 uid="uid://bfmyj5xhse4kj"]
 
-[ext_resource type="Script" uid="uid://7obm1x7kxoad" path="res://Scripts/MeleeMob.cs" id="1_ciheo"]
+[ext_resource type="Script" uid="uid://7obm1x7kxoad" path="res://Scripts/Entity/MeleeMob.cs" id="1_ciheo"]
+[ext_resource type="Texture2D" uid="uid://b71hxucnuxodw" path="res://Textures/Mob.png" id="2_aq7di"]
+[ext_resource type="PackedScene" uid="uid://beropop8m2j5w" path="res://Scenes/HealthBar.tscn" id="3_npy1c"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aq7di"]
-radius = 300.0
+radius = 200.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h16wh"]
-size = Vector2(120, 120)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ykgla"]
-load_path = "res://.godot/imported/icon.svg-f434aa81383d8e7efdc588f214c40953.ctex"
+size = Vector2(55.25, 64)
 
 [node name="EnemyMeleeMob" type="CharacterBody2D" unique_id=1821161301]
-position = Vector2(-8, 14)
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_ciheo")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1506957582]
@@ -26,8 +25,16 @@ position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_aq7di")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2083507849]
+position = Vector2(9.625, 1)
 shape = SubResource("RectangleShape2D_h16wh")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=547453533]
-position = Vector2(1, 2)
-texture = SubResource("CompressedTexture2D_ykgla")
+position = Vector2(5, 1)
+texture = ExtResource("2_aq7di")
+
+[node name="HealthBar" parent="." unique_id=753283030 instance=ExtResource("3_npy1c")]
+offset_left = -20.0
+offset_top = -52.0
+offset_right = 40.0
+offset_bottom = -37.0
+script = null
