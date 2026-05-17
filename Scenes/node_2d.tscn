@@ -84,13 +84,16 @@ script = ExtResource("8_chwn1")
 
 [node name="Hud" parent="UI" unique_id=1317377229 instance=ExtResource("13_he4j0")]
 
-[node name="Node2D" parent="." unique_id=1917453868 instance=ExtResource("14_85gyg")]
-position = Vector2(170, 616)
-MaxMobsOnScr = 4
-MaxSpawns = 12
-
 [node name="FriendlyMeleeMob" parent="." unique_id=1821161301 instance=ExtResource("15_c32x4")]
-position = Vector2(115, 587)
+position = Vector2(134, 549)
+MaxHealth = 10000
+Damage = 15
+AttackRange = 1000.0
 
 [node name="EnemyMeleeMob" parent="." unique_id=692986940 instance=ExtResource("16_fg7i4")]
 position = Vector2(172, 503)
+Damage = 1
+AttackRange = 60.0
+
+[node name="Node2D" parent="." unique_id=1917453868 instance=ExtResource("14_85gyg")]
+position = Vector2(193, 558)

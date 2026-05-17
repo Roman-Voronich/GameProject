@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://by3bklj6e6pw6" path="res://Scripts/Entity/HealthBar.cs" id="1_1f0m8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2s5sm"]
-bg_color = Color(0.5099101, 0.41408464, 9.62615e-08, 1)
+bg_color = Color(0.5053218, 0.91330606, 0, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n0673"]
-bg_color = Color(0.48452926, 0.9063318, 0.48452926, 1)
+bg_color = Color(0.42358288, 0.42358288, 0.42358288, 1)
 border_width_top = 1
 border_width_bottom = 1
 corner_radius_top_left = 5
@@ -40,6 +40,7 @@ mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_2s5sm")
 theme_override_styles/fill = SubResource("StyleBoxFlat_n0673")
 step = 1.0
+value = 100.0
 show_percentage = false
 
 [node name="Label" type="Label" parent="." unique_id=1440240182]

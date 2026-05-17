@@ -28,13 +28,14 @@ shape = SubResource("CircleShape2D_aq7di")
 position = Vector2(9.625, 1)
 shape = SubResource("RectangleShape2D_h16wh")
 
+[node name="HealthBar" parent="." unique_id=753283030 instance=ExtResource("3_npy1c")]
+light_mask = 7
+visibility_layer = 7
+offset_left = -16.0
+offset_top = -48.0
+offset_right = 34.0
+offset_bottom = -38.0
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=547453533]
 position = Vector2(5, 1)
 texture = ExtResource("2_aq7di")
-
-[node name="HealthBar" parent="." unique_id=753283030 instance=ExtResource("3_npy1c")]
-offset_left = -20.0
-offset_top = -52.0
-offset_right = 40.0
-offset_bottom = -37.0
-script = null
