@@ -10,6 +10,8 @@ public partial class ResBar : HBoxContainer
 	public override void _Ready()
 	{
 		ReBuild();
+		_player = GetNode<Player>(new NodePath("/root/Node2D/Player"));
+		_player.InventoryChange += Update;
 	}
 
 	public void ReBuild()
@@ -28,6 +30,15 @@ public partial class ResBar : HBoxContainer
 			AddChild(slot);
 			
 			slot.Setup(res,0); //Потом доставать из инвентаря, по сигналу изменения вызывать Update
+		}
+	}
+
+	public void Update(string nameResource, int count)
+	{
+		foreach (ResSlot child in GetChildren())
+		{
+			if (child.Data.Name != nameResource) continue;
+			child.Update(_player.GetCountResource(nameResource));
 		}
 	}
 

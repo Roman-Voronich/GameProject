@@ -17,7 +17,7 @@ public partial class ResourceMap : CustomMapLayer
         resource.hp -= damage;
         if (resource.hp <= 0)
         {
-            player.AddResource(resource.type, resource.count);
+            player.ChangeCountResource(resource.type, resource.count);
 
             EraseCell(position);
             resources[x, y] = null;

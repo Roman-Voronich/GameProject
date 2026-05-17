@@ -8,10 +8,16 @@ public partial class Player
     public delegate void InventoryChangeEventHandler(string nameResource, int count);
     private Dictionary<string, int> inventory;
 
-    public void AddResource(string resource, int count)
+    public void ChangeCountResource(string resource, int count)
     {
         if (!inventory.TryAdd(resource, count))
             inventory[resource] += count;
         EmitSignal(SignalName.InventoryChange, resource, count);
+    }
+
+    public int GetCountResource(string resource)
+    {
+        inventory.TryGetValue(resource, out var count);
+        return count;
     }
 }
