@@ -31,10 +31,10 @@ public partial class Map : Node2D
 		walkableMap.GenerateMap(terrianMap, resourceMap, width, height);
 	}
 
-	public void DigResource(Dictionary<string, int> inventory, int damage)
+	public void DigResource(Player player, int damage)
 	{
 		var pos = resourceMap.GetTilePos();
-		if (resourceMap.DigResource(inventory, damage, pos))
+		if (resourceMap.DigResource(player, damage, pos))
 		{
 			walkableMap.SetCell(pos, 0, new Vector2I(0, 0));
 			structureMap.buildingZone[pos.X, pos.Y] = true;

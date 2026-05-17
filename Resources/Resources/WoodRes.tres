@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ResourceData" format=3 uid="uid://0ng562bnwie7"]
+
+[ext_resource type="Texture2D" uid="uid://b3fls15d2pr5i" path="res://Textures/woodRes.png" id="1_k20jb"]
+[ext_resource type="Script" uid="uid://bjetor330au01" path="res://Scripts/Datas/ResourceData.cs" id="2_0y75y"]
+
+[resource]
+script = ExtResource("2_0y75y")
+Name = "Wood"
+Texture = ExtResource("1_k20jb")

@@ -32,7 +32,7 @@ public partial class Player : Node2D
 			isManyChange = !isManyChange;
 		if (!isBuildMode
 			&& @event.IsActionPressed("ui_left_click"))
-			map.DigResource(inventory, 1);
+			map.DigResource(this, 1);
 	}
 
 	private bool IsKeyJustPressed(InputEvent e, Key key) =>

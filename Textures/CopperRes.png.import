@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxlolnxs1c0x0"
-path="res://.godot/imported/resources.svg-62a4c314154a7c22dc6913b1a575f78b.ctex"
+uid="uid://de66t3enmdg22"
+path="res://.godot/imported/CopperRes.png-9222716087c43b0f1a31cf97468f6923.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TileSets/resources.svg"
-dest_files=["res://.godot/imported/resources.svg-62a4c314154a7c22dc6913b1a575f78b.ctex"]
+source_file="res://Textures/CopperRes.png"
+dest_files=["res://.godot/imported/CopperRes.png-9222716087c43b0f1a31cf97468f6923.ctex"]
 
 [params]
 
@@ -38,6 +38,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

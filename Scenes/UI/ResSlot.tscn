@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cbtsmyuqdhi86"]
+
+[ext_resource type="Texture2D" uid="uid://do5foic7ktpu1" path="res://Textures/ResSlot.png" id="1_twypv"]
+[ext_resource type="Script" uid="uid://bgky08yxesiuw" path="res://Scripts/UI/ResSlot.cs" id="2_u0dfx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2grw1"]
+font_size = 21
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
+
+[node name="ResSlot" type="TextureRect" unique_id=243240480]
+custom_minimum_size = Vector2(136, 70)
+offset_right = 136.0
+offset_bottom = 68.0
+texture = ExtResource("1_twypv")
+script = ExtResource("2_u0dfx")
+
+[node name="Texture" type="TextureRect" parent="." unique_id=486621616]
+layout_mode = 1
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Count" type="Label" parent="." unique_id=2046131250]
+layout_mode = 0
+offset_left = 68.0
+offset_top = 11.0
+offset_right = 128.0
+offset_bottom = 41.0
+label_settings = SubResource("LabelSettings_2grw1")
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cuaci45iqp0q3"]
 
 [ext_resource type="PackedScene" uid="uid://j38luk52oyea" path="res://Scenes/UI/SkillBar.tscn" id="1_omqfp"]
+[ext_resource type="PackedScene" uid="uid://cl42gglqymd8v" path="res://Scenes/UI/ResBar.tscn" id="2_qc5w2"]
 
 [node name="Hud" type="Control" unique_id=1317377229]
 layout_mode = 3
@@ -11,7 +12,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SkillBar" parent="." unique_id=1372024372 instance=ExtResource("1_omqfp")]
-custom_minimum_size = Vector2(0, 0)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -24,3 +24,6 @@ offset_right = 32.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="ResBar" parent="." unique_id=597616259 instance=ExtResource("2_qc5w2")]
+layout_mode = 1

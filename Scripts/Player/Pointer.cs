@@ -23,6 +23,7 @@ public partial class Pointer : Panel
 			styleBox.BorderColor = new Color(0xFFFF00FF);
 			ChangePointer(currentStructure);
 		}
+		
 	}
 
 	public void ChangePointer(Structure structure)

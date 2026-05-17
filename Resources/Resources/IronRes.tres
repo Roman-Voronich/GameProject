@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ResourceData" format=3 uid="uid://b6eiy1oxfiejp"]
+
+[ext_resource type="Texture2D" uid="uid://btaxu1w64rwm3" path="res://Textures/IronRes.png" id="1_5tg4d"]
+[ext_resource type="Script" uid="uid://bjetor330au01" path="res://Scripts/Datas/ResourceData.cs" id="1_0243l"]
+
+[resource]
+script = ExtResource("1_0243l")
+Name = "Iron"
+Texture = ExtResource("1_5tg4d")
+metadata/_custom_type_script = "uid://bjetor330au01"
