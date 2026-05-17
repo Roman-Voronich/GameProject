@@ -2,15 +2,28 @@
 
 [ext_resource type="Texture2D" uid="uid://dbduw13ghmf7b" path="res://TileSets/terrian.svg" id="1_pqqm1"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_wh6b0"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ycfxt"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_qgp6v"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ea1v3"]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wh6b0"]
 texture = ExtResource("1_pqqm1")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_wh6b0")
 0:1/0 = 0
+0:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_ycfxt")
 1:1/0 = 0
+1:1/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_ea1v3")
 1:0/0 = 0
+1:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_qgp6v")
 
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
+navigation_layer_0/layers = 1
 sources/1 = SubResource("TileSetAtlasSource_wh6b0")

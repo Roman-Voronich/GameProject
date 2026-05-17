@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bfmyj5xhse4kj"]
+
+[ext_resource type="Script" uid="uid://7obm1x7kxoad" path="res://Scripts/Entity/MeleeMob.cs" id="1_ciheo"]
+[ext_resource type="Texture2D" uid="uid://b71hxucnuxodw" path="res://Textures/Mob.png" id="2_aq7di"]
+[ext_resource type="PackedScene" uid="uid://beropop8m2j5w" path="res://Scenes/HealthBar.tscn" id="3_npy1c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_aq7di"]
+radius = 200.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h16wh"]
+size = Vector2(55.25, 64)
+
+[node name="EnemyMeleeMob" type="CharacterBody2D" unique_id=1821161301]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_ciheo")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1506957582]
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1952358607]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=405216611]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_aq7di")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2083507849]
+position = Vector2(9.625, 1)
+shape = SubResource("RectangleShape2D_h16wh")
+
+[node name="HealthBar" parent="." unique_id=753283030 instance=ExtResource("3_npy1c")]
+light_mask = 7
+visibility_layer = 7
+offset_left = -16.0
+offset_top = -48.0
+offset_right = 34.0
+offset_bottom = -38.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=547453533]
+position = Vector2(5, 1)
+texture = ExtResource("2_aq7di")
