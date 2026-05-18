@@ -2,12 +2,16 @@
 
 [ext_resource type="Script" uid="uid://by3bklj6e6pw6" path="res://Scripts/Entity/HealthBar.cs" id="1_1f0m8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2s5sm"]
-bg_color = Color(0.5053218, 0.91330606, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1f0m8"]
+bg_color = Color(0.76287717, 0, 0.13924718, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+expand_margin_left = 1.0
+expand_margin_top = 1.0
+expand_margin_right = 1.0
+expand_margin_bottom = 1.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n0673"]
 bg_color = Color(0.42358288, 0.42358288, 0.42358288, 1)
@@ -29,6 +33,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1f0m8")
 
+[node name="DelayBar" type="ProgressBar" parent="." unique_id=892412355]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_1f0m8")
+step = 1.0
+value = 100.0
+show_percentage = false
+
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=266238404]
 layout_mode = 1
 anchors_preset = 15
@@ -37,7 +53,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_2s5sm")
 theme_override_styles/fill = SubResource("StyleBoxFlat_n0673")
 step = 1.0
 value = 100.0

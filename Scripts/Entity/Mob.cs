@@ -38,12 +38,14 @@ public abstract partial class Mob : CharacterBody2D
     {
         _currentHealth = MaxHealth;
         
+        
         _navAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
         _detectionArea = GetNode<Area2D>("DetectionArea");
         _collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
         _healthBar = GetNode<HealthBar>("HealthBar");
         _sprite = GetNode<Sprite2D>("Sprite2D");
-        
+
+        _healthBar.Visible = false;
         // Настройка зоны обнаружения
         if (_detectionArea.GetNode<CollisionShape2D>("CollisionShape2D")?.Shape is CircleShape2D circle)
         {
@@ -188,12 +190,12 @@ public abstract partial class Mob : CharacterBody2D
     private void OnBodyEntered(Node2D body)
     {
         
-        if (body == this)
+        if (body == this || _currentState==MobState.Chase || _currentState==MobState.Attack)
         {
             return;
         }
         
-        if (body is Mob mob)
+        if (body is Mob mob && mob.Faction!=this.Faction)
             _enemiesInRange.Add(mob);
     }
     
