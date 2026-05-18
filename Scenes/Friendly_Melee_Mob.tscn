@@ -16,6 +16,7 @@ script = ExtResource("1_18ecy")
 Faction = 0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1506957582]
+avoidance_enabled = true
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=1952358607]
 collision_layer = 3
