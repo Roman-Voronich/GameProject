@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using GameProject;
 
 public partial class Player
 {
@@ -19,7 +20,6 @@ public partial class Player
     {
         var temp = GetGlobalMousePosition() - new Vector2I(currentStructure.Size.X - 1, currentStructure.Size.Y - 1) * 16;
         var startPos = map.GlobalToMap(temp);
-        //map.TryBuildStructure(currentStructure, startPos);
         BuildingManager.Instance.PlaceBuilding(startPos, currentStructure);
 
     }

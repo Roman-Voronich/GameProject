@@ -1,13 +1,14 @@
 using Godot;
 using System.Collections.Generic;
 
+namespace GameProject;
+
 public partial class BuildingManager : Node
 {
     public static BuildingManager Instance { get; private set; }
 
     private TileMapLayer _structureMap;
-    
-    private Dictionary<Vector2I, BuildingRecord> _registry = new();
+    private Dictionary<Vector2I, BuildingEntity> _entities = new();
 
     public override void _Ready()
     {
@@ -18,86 +19,73 @@ public partial class BuildingManager : Node
     private void AutoFindMap()
     {
         _structureMap = GetNode<TileMapLayer>("/root/Game/Map/StructureMap");
+        
+        if (_structureMap == null)
+            GD.PrintErr("BuildingManager: StructureMap не найден!");
     }
 
-    public bool PlaceBuilding(Vector2I gridPos, BuildingData data)
+    /// 🏗 Разместить здание
+    public bool PlaceBuilding(Vector2I gridPos, BuildingData data, EntityFaction faction = EntityFaction.Player)
     {
         if (_structureMap == null || data == null) return false;
-        if (!IsSpaceFree(gridPos, data.Size))
-        {
-            GD.Print($"Место занято или выходит за границы: {gridPos}");
-            return false;
-        }
+        if (!IsSpaceFree(gridPos, data.Size)) return false;
 
-        // 1. Визуал: ставим тайлы на карту
+        // 1. Визуал
         MarkOccupied(gridPos, data.Size, data.TileId);
 
-        // 2. Логика: создаём поведение по имени
+        // 2. Логика
         var logic = CreateLogic(data.Name);
         if (logic == null)
         {
-            GD.PrintErr($"Нет логики для здания с Id: {data.Name}");
-            ClearOccupied(gridPos, data.Size); // Откат визуала
+            ClearOccupied(gridPos, data.Size);
             return false;
         }
 
-        // 3. Связь: инициализируем и сохраняем в реестр
-        logic.OnPlaced(gridPos, data);
-        _registry[gridPos] = new BuildingRecord { Logic = logic, Size = data.Size };
+        // 3. Сущность
+        var entity = new BuildingEntity(gridPos, data, _structureMap, logic, faction);
+        entity.OnDestroyed += OnEntityDestroyed;
+        _entities[gridPos] = entity;
 
-        GD.Print($"Построено: {data.Name} на {gridPos}");
+        GD.Print($"{data.Name} на {gridPos}");
         return true;
     }
 
     public void RemoveBuilding(Vector2I gridPos)
     {
-        if (!_registry.TryGetValue(gridPos, out var record)) return;
-
-        record.Logic.OnDestroyed();
-        _registry.Remove(gridPos);
-        ClearOccupied(gridPos, record.Size);
+        if (!_entities.TryGetValue(gridPos, out var entity)) return;
         
-        GD.Print($"Удалено здание на {gridPos}");
+        entity.OnDestroyed -= OnEntityDestroyed;
+        entity.Logic.OnDestroyed();
+        ClearOccupied(gridPos, entity.Data.Size);
+        _entities.Remove(gridPos);
     }
-//вызывать в Process главной ноды сцены или по таймеру
+
     public void UpdateBuildings(double delta)
     {
-        foreach (var record in _registry.Values)
-        {
-            record.Logic.OnTick(delta);
-        }
+        foreach (var entity in _entities.Values)
+            if (entity.IsAlive) entity.UpdateLogic(delta);
     }
 
-    ///Обработка клика по миру
     public void OnBuildingClicked(Vector2 worldPos)
     {
         if (_structureMap == null) return;
-
-        Vector2I tilePos = _structureMap.LocalToMap(worldPos);
-        var record = GetBuildingAt(tilePos);
-
-        if (record != null)
-        {
-            record.Logic.OnInteract();
-        }
+        var gridPos = _structureMap.LocalToMap(worldPos);
+        GetEntityAt(gridPos)?.OnInteract();
     }
 
 
-    private BuildingRecord GetBuildingAt(Vector2I tilePos)
+    private BuildingEntity GetEntityAt(Vector2I tilePos)
     {
-        // Прямой поиск (если клик в верхний-левый угол)
-        if (_registry.TryGetValue(tilePos, out var record)) return record;
-
-        // Поиск по всем зарегистрированным зданиям (поддержка клика в центр многотайлового здания)
-        foreach (var kvp in _registry)
+        if (_entities.TryGetValue(tilePos, out var entity)) return entity;
+        
+        // Поиск по многотайловым зданиям
+        foreach (var kvp in _entities)
         {
             var start = kvp.Key;
-            var size = kvp.Value.Size;
+            var size = kvp.Value.Data.Size;
             if (tilePos.X >= start.X && tilePos.X < start.X + size.X &&
                 tilePos.Y >= start.Y && tilePos.Y < start.Y + size.Y)
-            {
                 return kvp.Value;
-            }
         }
         return null;
     }
@@ -105,60 +93,31 @@ public partial class BuildingManager : Node
     private bool IsSpaceFree(Vector2I start, Vector2I size)
     {
         for (int x = 0; x < size.X; x++)
-        {
             for (int y = 0; y < size.Y; y++)
-            {
-                Vector2I tile = start + new Vector2I(x, y);
-                if (_structureMap.GetCellSourceId(tile) != -1) return false;
-            }
-        }
+                if (_structureMap.GetCellSourceId(start + new Vector2I(x, y)) != -1)
+                    return false;
         return true;
     }
 
     private void MarkOccupied(Vector2I start, Vector2I size, int tileId)
     {
         for (int x = 0; x < size.X; x++)
-        {
             for (int y = 0; y < size.Y; y++)
-            {
-               // _structureMap.SetCell(start + new Vector2I(x, y), tileId);
-               // В MarkOccupied:
-               _structureMap.SetCell(
-                   start + new Vector2I(x, y), 
-                   tileId, 
-                    Vector2I.Zero +  new Vector2I(x, y), 
-                   0
-               );
-               GD.Print($"📍 SetCell: pos={start}, src={tileId}, result={_structureMap.GetCellSourceId(start)}");
-            }
-        }
+                _structureMap.SetCell(start + new Vector2I(x, y), tileId, new Vector2I(x, y));
     }
 
     private void ClearOccupied(Vector2I start, Vector2I size)
     {
         for (int x = 0; x < size.X; x++)
-        {
             for (int y = 0; y < size.Y; y++)
-            {
                 _structureMap.SetCell(start + new Vector2I(x, y), -1);
-            }
-        }
     }
 
-    private IBuildingLogic CreateLogic(string name)
-    {
-        return name switch
-        {
-            "farm"=> new FarmLogic(),
-            /*"barracks" => new BarracksLogic(),
-            "mine"     => new MineLogic(),
-            _          => null*/
-        };
-    }
+    private void OnEntityDestroyed(BuildingEntity entity) => RemoveBuilding(entity.GridPosition);
 
-    private class BuildingRecord
+    private IBuildingLogic CreateLogic(string name) => name switch
     {
-        public IBuildingLogic Logic { get; set; } = null!;
-        public Vector2I Size { get; set; }
-    }
+       "Mine" => new MineLogic(),
+        _ => null
+    };
 }

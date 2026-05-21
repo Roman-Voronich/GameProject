@@ -31,14 +31,9 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
-<<<<<<< HEAD
-[node name="Node2D" type="Node2D" unique_id=1168191129]
-position = Vector2(384, 1296)
-=======
 [node name="Game" type="Node2D" unique_id=1168191129]
 position = Vector2(951, 1292)
 script = ExtResource("1_gwne5")
->>>>>>> c26c53b (Здания)
 
 [node name="Player" type="Node2D" parent="." unique_id=1076933366 groups=["Player"]]
 unique_name_in_owner = true

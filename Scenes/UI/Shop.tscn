@@ -1,8 +1,7 @@
 [gd_scene format=3 uid="uid://ckaatsb2op32e"]
 
 [ext_resource type="Script" uid="uid://b3va6gp0og11b" path="res://Scripts/UI/Shop.cs" id="1_kk4ix"]
-[ext_resource type="Resource" uid="uid://0bgmq2o5h4g8" path="res://Resources/Buildings/farm.tres" id="2_meyip"]
-[ext_resource type="Resource" uid="uid://lw0stgnmo65i" path="res://Resources/Buildings/Wall.tres" id="3_meyip"]
+[ext_resource type="Resource" uid="uid://dax250eudmesl" path="res://Resources/Buildings/Mine.tres" id="2_meyip"]
 [ext_resource type="Texture2D" uid="uid://cinwlp208t50t" path="res://Textures/Destroy.png" id="4_cjtqb"]
 
 [node name="Shop" type="Control" unique_id=18152731]
@@ -17,7 +16,7 @@ offset_bottom = -119.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kk4ix")
-buildings = Array[Object]([ExtResource("2_meyip"), ExtResource("3_meyip"), ExtResource("3_meyip"), ExtResource("2_meyip"), ExtResource("3_meyip"), ExtResource("2_meyip"), ExtResource("3_meyip"), ExtResource("3_meyip"), ExtResource("2_meyip"), ExtResource("3_meyip")])
+buildings = Array[Object]([ExtResource("2_meyip")])
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=322893713]
 layout_mode = 1
