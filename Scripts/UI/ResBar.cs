@@ -10,7 +10,7 @@ public partial class ResBar : HBoxContainer
 	public override void _Ready()
 	{
 		ReBuild();
-		_player = GetNode<Player>(new NodePath("/root/Node2D/Player"));
+		_player = GetTree().GetFirstNodeInGroup("Player") as Player;
 		_player.InventoryChange += Update;
 	}
 

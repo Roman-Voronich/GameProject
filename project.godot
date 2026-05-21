@@ -18,6 +18,7 @@ config/icon="res://Textures/icon.svg"
 [autoload]
 
 SkillSystem="*uid://bj4wetocwptii"
+BuildingManager="*uid://bykb6rj88d2os"
 
 [display]
 

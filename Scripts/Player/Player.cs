@@ -9,14 +9,14 @@ public partial class Player : Node2D
 	private Camera2D camera;
 	private float cameraZoom = 1;
 	private Vector2I currentTile = new(0, 0);
-	private Structure currentStructure = new(2, 2, 1, 0);
+	public BuildingData currentStructure;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		map = GetNode<Map>(new NodePath("../Map"));
 		camera = GetNode<Camera2D>(new NodePath("Camera"));
-		inventory = new Dictionary<string, int>();
+		inventory = new Dictionary<string, int>();	
         pointer = GetNode<Pointer>(new NodePath("../Map/Pointer"));
 	}
 

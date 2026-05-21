@@ -1,0 +1,65 @@
+[gd_scene format=3 uid="uid://7cubfl8solxc"]
+
+[ext_resource type="Script" uid="uid://cvw264nyhx6il" path="res://Scripts/UI/BuildSlot.cs" id="1_14ed6"]
+[ext_resource type="Texture2D" uid="uid://bfjpenbpiwplc" path="res://Textures/icon.svg" id="2_wfagx"]
+[ext_resource type="PackedScene" uid="uid://drjli6pcspqoj" path="res://Scenes/UI/cost.tscn" id="3_q0vq2"]
+[ext_resource type="Texture2D" uid="uid://b3fls15d2pr5i" path="res://Textures/woodRes.png" id="4_euetk"]
+[ext_resource type="Texture2D" uid="uid://5jjohuwh00t6" path="res://Textures/StoneRes.png" id="5_m7e1v"]
+[ext_resource type="Texture2D" uid="uid://de66t3enmdg22" path="res://Textures/CopperRes.png" id="6_if8ym"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_14ed6"]
+font_size = 50
+
+[node name="BuildSlot" type="Button" unique_id=1023331264]
+custom_minimum_size = Vector2(225, 450)
+offset_right = 250.0
+offset_bottom = 500.0
+script = ExtResource("1_14ed6")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=966277287]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.216
+offset_bottom = 128.0
+grow_horizontal = 2
+texture = ExtResource("2_wfagx")
+
+[node name="Name" type="Label" parent="." unique_id=1365604277]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.21
+anchor_right = 0.631
+anchor_bottom = 0.21
+offset_left = 2.0
+offset_top = 126.99999
+offset_right = 92.464005
+offset_bottom = 206.0
+label_settings = SubResource("LabelSettings_14ed6")
+horizontal_alignment = 1
+
+[node name="Costs" type="VBoxContainer" parent="." unique_id=1907983302]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.274
+anchor_bottom = 0.274
+offset_left = 10.0
+offset_top = 169.0
+offset_right = 74.0
+offset_bottom = 437.0
+scale = Vector2(0.6, 0.6)
+
+[node name="wood" parent="Costs" unique_id=2076568681 instance=ExtResource("3_q0vq2")]
+layout_mode = 2
+texture = ExtResource("4_euetk")
+
+[node name="stone" parent="Costs" unique_id=815974749 instance=ExtResource("3_q0vq2")]
+layout_mode = 2
+texture = ExtResource("5_m7e1v")
+
+[node name="copper" parent="Costs" unique_id=92102475 instance=ExtResource("3_q0vq2")]
+layout_mode = 2
+texture = ExtResource("6_if8ym")
+
+[node name="iron" parent="Costs" unique_id=1647656671 instance=ExtResource("3_q0vq2")]
+layout_mode = 2

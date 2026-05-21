@@ -14,7 +14,7 @@ public partial class Pointer : Panel
 		startPos = Position;
 	}
 
-	public void ChangeMode(bool isRemoveMode, Structure currentStructure)
+	public void ChangeMode(bool isRemoveMode, BuildingData currentStructure)
 	{
 		this.isRemoveMode = isRemoveMode;
 		var styleBox = GetThemeStylebox("panel") as StyleBoxFlat;
@@ -26,7 +26,7 @@ public partial class Pointer : Panel
 		
 	}
 
-	public void ChangePointer(Structure structure)
+	public void ChangePointer(BuildingData structure)
 	{
 		Size = new Vector2(4, 4) + structure.Size * 32;
 		shift = (structure.Size - Vector2I.One) * -16;

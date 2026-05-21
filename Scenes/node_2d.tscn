@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://dhlwyeewt7oxw"]
 
+[ext_resource type="Script" uid="uid://dwr2hqh25h77b" path="res://Scripts/Game.cs" id="1_gwne5"]
 [ext_resource type="Script" uid="uid://d8m5vty3fupw" path="res://Scripts/Map/Map.cs" id="2_2ooml"]
 [ext_resource type="Script" uid="uid://byhj5wk0hkuxp" path="res://Scripts/Player/PlayerClickHandler.cs" id="2_gwne5"]
 [ext_resource type="Script" uid="uid://lqtfersr8wxp" path="res://Scripts/Player/Player.cs" id="3_hh5uf"]
@@ -30,8 +31,14 @@ corner_radius_top_right = 2
 corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
+<<<<<<< HEAD
 [node name="Node2D" type="Node2D" unique_id=1168191129]
 position = Vector2(384, 1296)
+=======
+[node name="Game" type="Node2D" unique_id=1168191129]
+position = Vector2(951, 1292)
+script = ExtResource("1_gwne5")
+>>>>>>> c26c53b (Здания)
 
 [node name="Player" type="Node2D" parent="." unique_id=1076933366 groups=["Player"]]
 unique_name_in_owner = true
