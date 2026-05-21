@@ -6,6 +6,7 @@ public partial class MeleeMob : Mob
 {
     public override void _Ready()
     {
+        AttackCooldown = 3f;
         base._Ready();
     }
 }
