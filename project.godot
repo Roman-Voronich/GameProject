@@ -96,6 +96,14 @@ ui_change_tile={
 
 rendering/root_node_layout_direction=3
 
+[layer_names]
+
+2d_physics/layer_1="world"
+2d_physics/layer_2="enemies"
+2d_physics/layer_3="player"
+2d_physics/layer_4="vision_area"
+2d_physics/layer_5="clickable_area"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

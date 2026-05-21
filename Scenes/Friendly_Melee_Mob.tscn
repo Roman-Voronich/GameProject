@@ -7,11 +7,12 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_aq7di"]
 radius = 200.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h16wh"]
-size = Vector2(55.25, 64)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ka80j"]
+size = Vector2(61.250023, 65.00001)
 
 [node name="FriendlyMeleeMob" type="CharacterBody2D" unique_id=1821161301]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.8, 0.8)
+collision_layer = 3
 script = ExtResource("1_18ecy")
 Faction = 0
 
@@ -20,14 +21,10 @@ avoidance_enabled = true
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=1952358607]
 collision_layer = 3
-collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=405216611]
+visible = false
 shape = SubResource("CircleShape2D_aq7di")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2083507849]
-position = Vector2(9.625, 1)
-shape = SubResource("RectangleShape2D_h16wh")
 
 [node name="HealthBar" parent="." unique_id=753283030 instance=ExtResource("3_ka80j")]
 light_mask = 7
@@ -40,3 +37,17 @@ offset_bottom = -40.0
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=547453533]
 position = Vector2(5, 1)
 texture = ExtResource("2_18ecy")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=278375859]
+position = Vector2(-2.029419, 0)
+scale = Vector2(1.0385638, 1)
+polygon = PackedVector2Array(-23.749998, -26.249998, -23.749998, -27.499998, -23.749998, -27.499998, -22.499998, -27.499998, -21.249998, -29.999996, -11.249999, -29.999996, -9.999999, -26.249998, -9.999999, -13.749999, -13.749999, -9.999999, 0, -11.249999, -8.749999, -18.749998, -8.749999, -26.249998, -2.4999998, -32.499996, 16.249998, -32.499996, 22.499998, -24.999998, 22.499998, -12.499999, 34.999996, -3.7499995, 34.999996, 11.249999, 22.499998, 11.249999, 13.749999, 1.2499999, 21.249998, 28.749998, 18.749998, 34.999996, -23.749998, 32.499996)
+
+[node name="ClickArea" type="Area2D" parent="." unique_id=1970067482]
+position = Vector2(-8.749999, 0)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ClickArea" unique_id=1222024090]
+position = Vector2(11.874998, 0)
+scale = Vector2(0.9999995, 0.9999995)
+shape = SubResource("RectangleShape2D_ka80j")

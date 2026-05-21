@@ -4,13 +4,11 @@ namespace GameProject
 {
     public partial class HealthBar : Control
     {
-        private Label _label;
         private ProgressBar _progressBar;
         private ProgressBar _delayBar;
         private Tween tween;
         public override void _Ready()
         {
-            _label = GetNode<Label>("Label");
             _progressBar = GetNode<ProgressBar>("ProgressBar");
             _delayBar = GetNode<ProgressBar>("DelayBar");
             _progressBar.Value = _progressBar.MaxValue;
@@ -26,13 +24,9 @@ namespace GameProject
             _progressBar.MaxValue = maxHealth;
             _progressBar.Value = currentHealth;
             tween = CreateTween();
-            tween.TweenProperty(_delayBar,"value", currentHealth, 0.4f )
-                .SetDelay(0.1f).SetEase(Tween.EaseType.Out)
-                .SetTrans(Tween.TransitionType.Sine);
-            if (_label != null)
-            {
-                //_label.Text = $"{currentHealth}/{maxHealth}";
-            }
+            tween.TweenProperty(_delayBar,"value", currentHealth, 1.2f )
+                .SetDelay(0.2f).SetEase(Tween.EaseType.InOut)
+                .SetTrans(Tween.TransitionType.Expo);
         }
     }
 }

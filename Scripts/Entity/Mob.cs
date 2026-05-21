@@ -5,9 +5,10 @@ using System.Collections.Generic;
 namespace GameProject;
 
 [GlobalClass]
-public abstract partial class Mob : CharacterBody2D
+public abstract partial class Mob : CharacterBody2D, IEntity
 {
     // ==================== ЭКСПОРТИРУЕМЫЕ ПОЛЯ ====================
+    [Export] public string Name { get; set; } = "Mob";
     [Export] public EntityFaction Faction { get; set; } = EntityFaction.Enemy;
     [Export] public int MaxHealth { get; set; } = 100;
     [Export] public float Speed { get; set; } = 200f;
@@ -20,15 +21,16 @@ public abstract partial class Mob : CharacterBody2D
     private int _currentHealth;
     private float _attackTimer;
     private MobState _currentState = MobState.Idle;
-    private Mob _currentTarget;
+    private IEntity _currentTarget;
     private List<Mob> _enemiesInRange = new List<Mob>();
-    
+    private IEntity _absoluteTarget;
     // ==================== КОМПОНЕНТЫ ====================
     private HealthBar _healthBar;
     private NavigationAgent2D _navAgent;
     private Area2D _detectionArea;
-    private CollisionShape2D _collisionShape;
-    private Sprite2D _sprite;
+    private CollisionPolygon2D _collisionShape;
+    private Sprite2D _sprite; 
+    private Area2D _clickableArea;
     
     // ==================== СИГНАЛЫ ====================
     [Signal] public delegate void DeathEventHandler();
@@ -37,13 +39,16 @@ public abstract partial class Mob : CharacterBody2D
     public override void _Ready()
     {
         _currentHealth = MaxHealth;
-        
+        var temp = GetNode<Area2D>("ClickArea");
+        temp.MouseEntered += Test;
         
         _navAgent = GetNode<NavigationAgent2D>("NavigationAgent2D");
         _detectionArea = GetNode<Area2D>("DetectionArea");
-        _collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
+        _collisionShape = GetNode<CollisionPolygon2D>("CollisionPolygon2D");
         _healthBar = GetNode<HealthBar>("HealthBar");
         _sprite = GetNode<Sprite2D>("Sprite2D");
+        _clickableArea = GetNode<Area2D>("ClickArea");
+        _clickableArea.AddToGroup("clickable");
 
         _healthBar.Visible = false;
         // Настройка зоны обнаружения
@@ -54,6 +59,11 @@ public abstract partial class Mob : CharacterBody2D
 
         _detectionArea.BodyEntered += OnBodyEntered;
         _detectionArea.BodyExited += OnBodyExited;
+    }
+
+    public void Test()
+    {
+        GD.Print("AAAAAAAAAAAAAAAAAA");
     }
     
     public override void _PhysicsProcess(double delta)
@@ -235,7 +245,7 @@ public abstract partial class Mob : CharacterBody2D
         return nearest;
     }
     
-    private bool IsEnemy(Mob other)
+    public bool IsEnemy(IEntity other)
     {
         return Faction != other.Faction;
     }
@@ -243,9 +253,9 @@ public abstract partial class Mob : CharacterBody2D
     // ==================== ПУБЛИЧНЫЕ МЕТОДЫ ====================
     public bool IsAlive => _currentHealth > 0 && _currentState != MobState.Death;
     
-    public void TakeDamage(int amount, Mob source = null)
+    public void TakeDamage(int amount, IEntity source = null)
     {
-        
+        GD.Print(_currentHealth);
         if (_currentState == MobState.Death)
         {
             return;
@@ -253,9 +263,9 @@ public abstract partial class Mob : CharacterBody2D
         
         _currentHealth -= amount;
         _healthBar.SetHealth(_currentHealth, MaxHealth);
-        
+        GD.Print(_currentHealth);
         // Если получил урон и не в бою - реагируем на обидчика
-        if (source != null && IsEnemy(source) && _currentState != MobState.Attack && _currentState != MobState.Chase)
+        if (source is Mob && IsEnemy(source) && _currentState != MobState.Attack && _currentState != MobState.Chase)
         {
             _currentTarget = source;
             _currentState = MobState.Chase;
@@ -263,6 +273,13 @@ public abstract partial class Mob : CharacterBody2D
         
         if (_currentHealth <= 0)
             Die();
+    }
+
+    public void Heal(int amount, IEntity source = null)
+    {
+        if (_currentHealth + amount > MaxHealth || _currentState == MobState.Death) return;
+        _currentHealth += amount;
+        _healthBar.SetHealth(_currentHealth, MaxHealth);
     }
     
     public void MoveTo(Vector2 target)
