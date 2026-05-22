@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddfgdhk5k27ih"
-path="res://.godot/imported/cave.png-3b8f381750e7d33956c8675199c39c3c.ctex"
+uid="uid://b3of1qrh0k6v1"
+path="res://.godot/imported/CopperMine.png-1935998dccdd0e78a744b884fabd8655.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/cave.png"
-dest_files=["res://.godot/imported/cave.png-3b8f381750e7d33956c8675199c39c3c.ctex"]
+source_file="res://TileSets/CopperMine.png"
+dest_files=["res://.godot/imported/CopperMine.png-1935998dccdd0e78a744b884fabd8655.ctex"]
 
 [params]
 

@@ -5,6 +5,7 @@ using Godot;
 public partial class Inventory : Node
 {
     public static event Action<ResourceType, int> InventoryChange;
+    public static event Action<ResourceType, float> PassiveIncomeChange;
     private static Rational[] inventory;
     private static Rational[] passiveIncome;
     private static bool havePassiveIncome = false;
@@ -19,7 +20,7 @@ public partial class Inventory : Node
         for (var i = 0; i < countRes; i++)
         {
             inventory[i] = new Rational(tps * 60);
-            if (EngineDebugger.IsActive()) inventory[i] += 1000;
+            /*if (EngineDebugger.IsActive())*/ inventory[i] += 1000;
             passiveIncome[i] = new Rational(tps * 60);
         }
     }
@@ -42,11 +43,17 @@ public partial class Inventory : Node
         return true;
     }
 
+    public static float GetPassiveIncome(ResourceType res)
+    {
+        return  (float)passiveIncome[(int)res];
+    }
+
 
     public static void AddPassiveIncome(ResourceType res, int resPerMinute)
     {
         passiveIncome[(int)res].AddFraction(resPerMinute);
         havePassiveIncome = true;
+        PassiveIncomeChange?.Invoke(res, resPerMinute);
     }
 
     public override void _PhysicsProcess(double delta)

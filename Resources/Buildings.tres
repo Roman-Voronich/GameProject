@@ -1,9 +1,81 @@
 [gd_resource type="TileSet" format=3 uid="uid://cd1qbgr15q0i4"]
 
-[ext_resource type="Texture2D" uid="uid://ddfgdhk5k27ih" path="res://Textures/cave.png" id="1_mhsjb"]
+[ext_resource type="Texture2D" uid="uid://ddfgdhk5k27ih" path="res://TileSets/Cave.png" id="1_wslka"]
+[ext_resource type="Texture2D" uid="uid://b3of1qrh0k6v1" path="res://TileSets/CopperMine.png" id="2_rl1lu"]
+[ext_resource type="Texture2D" uid="uid://b57cuhplji4ni" path="res://TileSets/IronMine.png" id="3_53p2s"]
+[ext_resource type="Texture2D" uid="uid://b1sihx8m4nkj6" path="res://TileSets/Lumber.png" id="4_qu6wk"]
+[ext_resource type="Texture2D" uid="uid://8uudujox0swc" path="res://TileSets/Main.png" id="5_ago5i"]
+[ext_resource type="Texture2D" uid="uid://c6o1qymcqdbgh" path="res://TileSets/StoneMine.png" id="6_it3ly"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yrtsw"]
+texture = ExtResource("6_it3ly")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0qvvq"]
+texture = ExtResource("2_rl1lu")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_00x0s"]
+texture = ExtResource("3_53p2s")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ub00p"]
+texture = ExtResource("4_qu6wk")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_32phu"]
+texture = ExtResource("5_ago5i")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aovl8"]
-texture = ExtResource("1_mhsjb")
+texture = ExtResource("1_wslka")
 texture_region_size = Vector2i(32, 32)
 1:0/0 = 0
 2:0/0 = 0
@@ -17,4 +89,9 @@ texture_region_size = Vector2i(32, 32)
 
 [resource]
 tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_aovl8")
+sources/1 = SubResource("TileSetAtlasSource_0qvvq")
+sources/2 = SubResource("TileSetAtlasSource_00x0s")
+sources/3 = SubResource("TileSetAtlasSource_ub00p")
+sources/4 = SubResource("TileSetAtlasSource_32phu")
+sources/0 = SubResource("TileSetAtlasSource_yrtsw")
+sources/5 = SubResource("TileSetAtlasSource_aovl8")

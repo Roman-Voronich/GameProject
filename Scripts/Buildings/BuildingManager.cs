@@ -15,6 +15,13 @@ public partial class BuildingManager : Node
     {
         Instance = this;
         CallDeferred(nameof(AutoFindMap));
+        CallDeferred(nameof(placeMain));
+    }
+
+    private void placeMain()
+    {
+        var data = GD.Load<BuildingData>("res://Resources/Buildings/MainBuilding.tres");
+        PlaceBuilding(new Vector2I(Map.width/2 -2 , Map.height/2 -2),data,EntityFaction.Player);
     }
 
     private void AutoFindMap()
@@ -29,7 +36,7 @@ public partial class BuildingManager : Node
     public bool PlaceBuilding(Vector2I gridPos, BuildingData data, EntityFaction faction = EntityFaction.Player)
     {
         if (_structureMap == null || data == null) return false;
-        if (!IsSpaceFree(gridPos, data.Size)) return false;
+        if (!Map.CanPlaceBuilding(gridPos, data.Size)) return false;
 
         // 1. Визуал
         var logic = CreateLogic(data.Name);
@@ -42,12 +49,18 @@ public partial class BuildingManager : Node
         MarkOccupied(gridPos, entity);
 
         GD.Print($"{data.Name} на {gridPos}");
+        for (int i = 0; i < 4; i++)
+        {
+            Inventory.ChangeCountResource((ResourceType)i,-data.Cost[i]);
+            if (!Inventory.HaveResource((ResourceType)i, data.Cost[i])) Player.Mode = PlayerMode.Nothing;
+        }
         return true;
     }
 
     public void RemoveBuilding(Vector2I gridPos)
     {
         if (!_entities.TryGetValue(gridPos, out var info)) return;
+        if (info.Entity.Data.Name == "MainBuilding") return;
         info.Entity.OnDestroyed -= OnEntityDestroyed;
         info.Entity.Logic.OnDestroyed();
         ClearOccupied(info.StartPos, info.Entity.Data.Size);
@@ -71,15 +84,6 @@ public partial class BuildingManager : Node
     {
         _entities.TryGetValue(tilePos, out var info);
         return info;
-    }
-
-    private bool IsSpaceFree(Vector2I start, Vector2I size)
-    {
-        for (int x = 0; x < size.X; x++)
-            for (int y = 0; y < size.Y; y++)
-                if (_structureMap.GetCellSourceId(start + new Vector2I(x, y)) != -1)
-                    return false;
-        return true;
     }
 
     private void MarkOccupied(Vector2I start, BuildingEntity entity)
@@ -119,7 +123,11 @@ public partial class BuildingManager : Node
 
     private IBuildingLogic CreateLogic(string name) => name switch
     {
-       "Mine" => new MineLogic(),
+       "StoneMine" => new StoneMineLogic(),
+       "Lumber" => new  LumberLogic(),
+       "CopperMine" => new CopperMineLogic(),
+       "IronMine" => new IronMine(),
+       "MainBuilding" => new MainBuildingLogic(),
         _ => null
     };
 }

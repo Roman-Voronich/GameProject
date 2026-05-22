@@ -1,15 +1,14 @@
 [gd_resource type="Resource" script_class="BuildingData" format=3 uid="uid://dax250eudmesl"]
 
 [ext_resource type="Script" uid="uid://d2ttslk0bo70o" path="res://Scripts/Datas/BuildingData.cs" id="1_bikae"]
-[ext_resource type="Texture2D" uid="uid://ddfgdhk5k27ih" path="res://Textures/cave.png" id="1_xg1l8"]
+[ext_resource type="Texture2D" uid="uid://c6o1qymcqdbgh" path="res://TileSets/StoneMine.png" id="1_xg1l8"]
 
 [resource]
 script = ExtResource("1_bikae")
-Name = "Mine"
+Name = "StoneMine"
 Icon = ExtResource("1_xg1l8")
 TileId = 0
 Size = Vector2i(3, 3)
-WoodCost = 50
-StoneCost = 50
-Description = "Производит 1 камень в 5 сек"
+Cost = PackedInt32Array(50, 50, 0, 0)
+Description = "Производит 12 камней в минуту."
 metadata/_custom_type_script = "uid://d2ttslk0bo70o"

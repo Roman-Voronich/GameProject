@@ -14,6 +14,8 @@ public partial class BuildSlot : Button
 		_icon = GetNode<TextureRect>("Icon");
 		_costs = GetNode<VBoxContainer>("Costs");
 		_name = GetNode<Label>("Name");
+		MouseEntered += OnMouseEntered;
+		MouseExited += OnMouseExited;
 	}
 	
 	public void Setup(BuildingData data)
@@ -25,18 +27,35 @@ public partial class BuildSlot : Button
 		foreach (var child in _costs.GetChildren())
 		{
 			if (child.Name == "wood")
-				child.GetNode<Label>("Label").Text = data.WoodCost.ToString();
+				child.GetNode<Label>("Label").Text = data.Cost[(int)ResourceType.Wood].ToString();
 			else if(child.Name == "stone")
-				child.GetNode<Label>("Label").Text = data.StoneCost.ToString();
+				child.GetNode<Label>("Label").Text = data.Cost[(int)ResourceType.Stone].ToString();
 			else if(child.Name == "copper")
-				child.GetNode<Label>("Label").Text = data.CopperCost.ToString();
+				child.GetNode<Label>("Label").Text = data.Cost[(int)ResourceType.Copper].ToString();
 			else if(child.Name == "iron")
-				child.GetNode<Label>("Label").Text = data.IronCost.ToString();
+				child.GetNode<Label>("Label").Text = data.Cost[(int)ResourceType.Iron].ToString();
 		}
+	}
+	private void OnMouseEntered()
+	{
+		if (_data.Description != null)
+		{
+			Tooltip.Instance?.Show(_data.Description, GetGlobalMousePosition());
+		}
+	}
+
+	private void OnMouseExited()
+	{
+		Tooltip.Instance?.Hide();
 	}
 
 	public override void _Pressed()
 	{
+		for (int i = 0; i < 4; i++)
+		{
+			if (!Inventory.HaveResource((ResourceType)i, _data.Cost[i])) return;
+
+		}
 		EmitSignal(SignalName.SlotClicked, _data);
 	}
 }

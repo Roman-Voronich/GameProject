@@ -1,16 +1,14 @@
 using Godot;
 using System;
 
-public partial class Game : Node
+public partial class Hud : Control
 {
-	private static Node game;
-	public static void Lose()
-	{
-		game.GetTree().ChangeSceneToFile("res://Scenes/Lose.tscn");
-	}
 	public override void _Ready()
 	{
-		game = this;
+		foreach (var child in GetChildren())
+		{
+			child._Ready();
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

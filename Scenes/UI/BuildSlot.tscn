@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://7cubfl8solxc"]
 
 [ext_resource type="Script" uid="uid://cvw264nyhx6il" path="res://Scripts/UI/BuildSlot.cs" id="1_14ed6"]
-[ext_resource type="Texture2D" uid="uid://ddfgdhk5k27ih" path="res://Textures/cave.png" id="2_14ed6"]
+[ext_resource type="Texture2D" uid="uid://ddfgdhk5k27ih" path="res://TileSets/Cave.png" id="2_14ed6"]
 [ext_resource type="PackedScene" uid="uid://drjli6pcspqoj" path="res://Scenes/UI/cost.tscn" id="3_q0vq2"]
 [ext_resource type="Texture2D" uid="uid://b3fls15d2pr5i" path="res://Textures/woodRes.png" id="4_euetk"]
 [ext_resource type="Texture2D" uid="uid://5jjohuwh00t6" path="res://Textures/StoneRes.png" id="5_m7e1v"]
 [ext_resource type="Texture2D" uid="uid://de66t3enmdg22" path="res://Textures/CopperRes.png" id="6_if8ym"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_14ed6"]
-font_size = 50
+font_size = 35
 
 [node name="BuildSlot" type="Button" unique_id=1023331264]
 custom_minimum_size = Vector2(225, 450)
@@ -37,6 +37,7 @@ offset_right = 92.464005
 offset_bottom = 206.0
 label_settings = SubResource("LabelSettings_14ed6")
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Costs" type="VBoxContainer" parent="." unique_id=1907983302]
 layout_mode = 1
