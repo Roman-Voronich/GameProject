@@ -21,6 +21,8 @@ public partial class Player : Node2D
 		if (Mode == PlayerMode.Nothing
 			&& @event.IsActionPressed("ui_left_click"))
 			Map.DigResource(this, 1);
+		if (IsKeyJustPressed(@event, Key.Escape))
+			GetTree().Quit();
 	}
 
 	private bool IsKeyJustPressed(InputEvent e, Key key) =>

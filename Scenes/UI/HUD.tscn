@@ -4,6 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://j38luk52oyea" path="res://Scenes/UI/SkillBar.tscn" id="1_omqfp"]
 [ext_resource type="PackedScene" uid="uid://cl42gglqymd8v" path="res://Scenes/UI/ResBar.tscn" id="2_qc5w2"]
 [ext_resource type="PackedScene" uid="uid://ipxkd5vw4x7p" path="res://Scenes/UI/Tooltip.tscn" id="4_ykvyr"]
+[ext_resource type="Texture2D" uid="uid://xtqc3oj3xifp" path="res://TileSets/Sprite-0001.png" id="5_lelo4"]
+[ext_resource type="Script" uid="uid://dtirypygmjp71" path="res://Scenes/UI/TextureButton.cs" id="6_1ree7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lelo4"]
+font_size = 17
 
 [node name="Hud" type="Control" unique_id=1317377229]
 layout_mode = 3
@@ -33,4 +38,38 @@ layout_mode = 1
 
 [node name="Tooltip" parent="." unique_id=1144127943 instance=ExtResource("4_ykvyr")]
 layout_mode = 0
-offset_right = 1000.0
+
+[node name="TextureButton" type="TextureButton" parent="." unique_id=144288012]
+layout_mode = 0
+offset_left = 576.0
+offset_top = 265.0
+offset_right = 1439.0
+offset_bottom = 787.0
+texture_normal = ExtResource("5_lelo4")
+stretch_mode = 0
+script = ExtResource("6_1ree7")
+
+[node name="Label" type="Label" parent="TextureButton" unique_id=994821647]
+layout_mode = 0
+offset_left = 360.0
+offset_top = 63.0
+offset_right = 1016.0
+offset_bottom = 307.0
+text = "На Левый Клик Можно:
+- Добывать ресурсы
+- Бить врагов
+- Выбирать юнитов и направлять их на врагов
+"
+label_settings = SubResource("LabelSettings_lelo4")
+
+[node name="Label2" type="Label" parent="TextureButton" unique_id=1310661522]
+layout_mode = 0
+offset_left = 380.0
+offset_top = 232.0
+offset_right = 838.0
+offset_bottom = 281.0
+text = "На клавишу 1 можно строить строения за счёт ресурсов
+На клавишу 2 можно разрушать строения
+
+Цель:
+Пережить все врагов волны"
