@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://fkidem0ov8k0"]
+
+[ext_resource type="Script" uid="uid://w3qjg4e13jop" path="res://Scripts/Entity/MobWaveSpawner.cs" id="1_7kgmg"]
+
+[node name="Mob_Wave_Spawner" type="Node2D" unique_id=306051574]
+script = ExtResource("1_7kgmg")
