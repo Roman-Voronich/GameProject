@@ -14,7 +14,7 @@ public class BuildAction : ISkillAction
     public void Cast(SkillData skill, Vector2 worldPos, Player player)
     {
         GD.Print("Build action cast");
-        var ui = player.GetParent().GetNode("UI");
+        var ui = player.GetParent().GetNode("UI/Hud");
         var shopNode = ui.GetNode<Shop>("Shop");
         if(shopNode == null && Player.Mode == PlayerMode.Nothing)
         {

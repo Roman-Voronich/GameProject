@@ -29,7 +29,7 @@ public partial class BuildingManager : Node
     public bool PlaceBuilding(Vector2I gridPos, BuildingData data, EntityFaction faction = EntityFaction.Player)
     {
         if (_structureMap == null || data == null) return false;
-        if (!IsSpaceFree(gridPos, data.Size)) return false;
+        if (!Map.CanPlaceBuilding(gridPos, data.Size)) return false;
 
         // 1. Визуал
         var logic = CreateLogic(data.Name);
@@ -71,15 +71,6 @@ public partial class BuildingManager : Node
     {
         _entities.TryGetValue(tilePos, out var info);
         return info;
-    }
-
-    private bool IsSpaceFree(Vector2I start, Vector2I size)
-    {
-        for (int x = 0; x < size.X; x++)
-            for (int y = 0; y < size.Y; y++)
-                if (_structureMap.GetCellSourceId(start + new Vector2I(x, y)) != -1)
-                    return false;
-        return true;
     }
 
     private void MarkOccupied(Vector2I start, BuildingEntity entity)

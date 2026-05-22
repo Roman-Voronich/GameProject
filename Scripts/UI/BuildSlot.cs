@@ -14,6 +14,8 @@ public partial class BuildSlot : Button
 		_icon = GetNode<TextureRect>("Icon");
 		_costs = GetNode<VBoxContainer>("Costs");
 		_name = GetNode<Label>("Name");
+		MouseEntered += OnMouseEntered;
+		MouseExited += OnMouseExited;
 	}
 	
 	public void Setup(BuildingData data)
@@ -33,6 +35,18 @@ public partial class BuildSlot : Button
 			else if(child.Name == "iron")
 				child.GetNode<Label>("Label").Text = data.IronCost.ToString();
 		}
+	}
+	private void OnMouseEntered()
+	{
+		if (_data.Description != null)
+		{
+			Tooltip.Instance?.Show(_data.Description, GetGlobalMousePosition());
+		}
+	}
+
+	private void OnMouseExited()
+	{
+		Tooltip.Instance?.Hide();
 	}
 
 	public override void _Pressed()

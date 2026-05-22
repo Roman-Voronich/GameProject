@@ -11,5 +11,5 @@ TileId = 0
 Size = Vector2i(3, 3)
 WoodCost = 50
 StoneCost = 50
-Description = "Производит 1 камень в 5 сек"
+Description = "Производит 12 камней в минуту."
 metadata/_custom_type_script = "uid://d2ttslk0bo70o"

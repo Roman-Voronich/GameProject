@@ -10,7 +10,6 @@ public partial class Player : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		map = GetNode<Map>(new NodePath("../Map"));
 		ModeChanged += x => GetNode<Pointer>(new NodePath("../Map/Pointer")).ChangeMode(x, currentStructure);
 	}
 
@@ -21,7 +20,7 @@ public partial class Player : Node2D
 			isManyChange = !isManyChange;
 		if (Mode == PlayerMode.Nothing
 			&& @event.IsActionPressed("ui_left_click"))
-			map.DigResource(this, 1);
+			Map.DigResource(this, 1);
 	}
 
 	private bool IsKeyJustPressed(InputEvent e, Key key) =>
