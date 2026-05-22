@@ -11,11 +11,11 @@ public class BuildAction : ISkillAction
         return true;
     }
 
-    public void Cast(SkillData skill, Vector2 worldPos, Player Player)
+    public void Cast(SkillData skill, Vector2 worldPos, Player player)
     {
         GD.Print("Build action cast");
         var ui = player.GetParent().GetNode("UI");
-        if(player.isBuildMode)player.ChangeMode();
+        if (Player.Mode == PlayerMode.Build) Player.Mode = PlayerMode.Nothing;
         else
         {
             var shopNode = ui.GetNode<Shop>("Shop");

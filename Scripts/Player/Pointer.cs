@@ -26,7 +26,7 @@ public partial class Pointer : Panel
 		}
 	}
 
-	public void ChangeMode(PlayerMode mode, Structure cs)
+	public void ChangeMode(PlayerMode mode, BuildingData cs)
 	{
 		isRemoveMode = false;
 		Visible = true;

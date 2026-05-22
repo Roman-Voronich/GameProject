@@ -32,7 +32,7 @@ public partial class Shop : Control
 	{
 		Player player = GetTree().GetFirstNodeInGroup("Player") as Player;
 		player.currentStructure = building;
-		player.ChangeMode();
+		Player.Mode = PlayerMode.Build;
 		ExitButtonPressed();
 	}
 }
