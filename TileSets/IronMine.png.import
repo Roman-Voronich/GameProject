@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6o1qymcqdbgh"
-path="res://.godot/imported/Sprite-0006.png-09911b7d8b08de87e38b216d6850a92a.ctex"
+uid="uid://b57cuhplji4ni"
+path="res://.godot/imported/IronMine.png-ed2d30b8dafd2b2df30e89a35e693e53.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TileSets/Sprite-0006.png"
-dest_files=["res://.godot/imported/Sprite-0006.png-09911b7d8b08de87e38b216d6850a92a.ctex"]
+source_file="res://TileSets/IronMine.png"
+dest_files=["res://.godot/imported/IronMine.png-ed2d30b8dafd2b2df30e89a35e693e53.ctex"]
 
 [params]
 

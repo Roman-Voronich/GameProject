@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://7cubfl8solxc"]
 
 [ext_resource type="Script" uid="uid://cvw264nyhx6il" path="res://Scripts/UI/BuildSlot.cs" id="1_14ed6"]
-[ext_resource type="Texture2D" uid="uid://ddfgdhk5k27ih" path="res://Textures/cave.png" id="2_14ed6"]
+[ext_resource type="Texture2D" uid="uid://ddfgdhk5k27ih" path="res://TileSets/Cave.png" id="2_14ed6"]
 [ext_resource type="PackedScene" uid="uid://drjli6pcspqoj" path="res://Scenes/UI/cost.tscn" id="3_q0vq2"]
 [ext_resource type="Texture2D" uid="uid://b3fls15d2pr5i" path="res://Textures/woodRes.png" id="4_euetk"]
 [ext_resource type="Texture2D" uid="uid://5jjohuwh00t6" path="res://Textures/StoneRes.png" id="5_m7e1v"]

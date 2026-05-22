@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b57cuhplji4ni"
-path="res://.godot/imported/Sprite-0007.png-fa3851049622747fc957d2d4a117deeb.ctex"
+uid="uid://ddfgdhk5k27ih"
+path="res://.godot/imported/Cave.png-0a1b6255fa7b0bd63c0369822746cf55.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TileSets/Sprite-0007.png"
-dest_files=["res://.godot/imported/Sprite-0007.png-fa3851049622747fc957d2d4a117deeb.ctex"]
+source_file="res://TileSets/Cave.png"
+dest_files=["res://.godot/imported/Cave.png-0a1b6255fa7b0bd63c0369822746cf55.ctex"]
 
 [params]
 

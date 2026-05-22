@@ -115,7 +115,8 @@ public partial class BuildingManager : Node
 
     private IBuildingLogic CreateLogic(string name) => name switch
     {
-       "Mine" => new MineLogic(),
+       "StoneMine" => new StoneMineLogic(),
+       "Lumber" => new  LumberLogic(),
         _ => null
     };
 }

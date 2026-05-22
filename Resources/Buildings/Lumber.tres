@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BuildingData" format=3 uid="uid://dn5tii2k616ky"]
+
+[ext_resource type="Texture2D" uid="uid://b1sihx8m4nkj6" path="res://TileSets/Lumber.png" id="1_7ycrb"]
+[ext_resource type="Script" uid="uid://d2ttslk0bo70o" path="res://Scripts/Datas/BuildingData.cs" id="1_cl2o5"]
+
+[resource]
+script = ExtResource("1_cl2o5")
+Name = "Lumber"
+Icon = ExtResource("1_7ycrb")
+TileId = 3
+Size = Vector2i(2, 2)
+Cost = PackedInt32Array(60, 0, 0, 0)
+Description = "Производит 12 дерева в минуту"
+metadata/_custom_type_script = "uid://d2ttslk0bo70o"

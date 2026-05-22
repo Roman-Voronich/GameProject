@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcuxr0l6ix58x"
-path="res://.godot/imported/Sprite-0004.png-3daad01e8346b41c5e8f570e17601921.ctex"
+uid="uid://b3of1qrh0k6v1"
+path="res://.godot/imported/CopperMine.png-1935998dccdd0e78a744b884fabd8655.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://TileSets/Sprite-0004.png"
-dest_files=["res://.godot/imported/Sprite-0004.png-3daad01e8346b41c5e8f570e17601921.ctex"]
+source_file="res://TileSets/CopperMine.png"
+dest_files=["res://.godot/imported/CopperMine.png-1935998dccdd0e78a744b884fabd8655.ctex"]
 
 [params]
 
