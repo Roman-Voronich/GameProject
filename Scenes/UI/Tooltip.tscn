@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://ipxkd5vw4x7p"]
+
+[ext_resource type="Script" uid="uid://cicrrln1tuy50" path="res://Scripts/UI/Tooltip.cs" id="1_e0u34"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_sfb3a"]
+font_size = 32
+outline_size = 5
+outline_color = Color(0.011764706, 0.011764706, 0.011764706, 1)
+
+[node name="Tooltip" type="Control" unique_id=355596362]
+z_index = 5
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1000.0
+mouse_filter = 2
+script = ExtResource("1_e0u34")
+
+[node name="Text" type="Label" parent="." unique_id=1980398080]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_sfb3a")
+autowrap_mode = 2

@@ -7,8 +7,9 @@ public partial class BuildingManager : Node
 {
     public static BuildingManager Instance { get; private set; }
 
-    private TileMapLayer _structureMap;
-    private Dictionary<Vector2I, BuildingEntity> _entities = new();
+    private StructureMap _structureMap;
+    private Map _map;
+    private Dictionary<Vector2I, TileInfo> _entities = new();
 
     public override void _Ready()
     {
@@ -18,33 +19,27 @@ public partial class BuildingManager : Node
 
     private void AutoFindMap()
     {
-        _structureMap = GetNode<TileMapLayer>("/root/Game/Map/StructureMap");
-        
+        _structureMap = GetNode<StructureMap>("/root/Game/Map/StructureMap");
+        _map = _structureMap.GetParent<Map>();
         if (_structureMap == null)
             GD.PrintErr("BuildingManager: StructureMap не найден!");
     }
 
-    /// 🏗 Разместить здание
+    ///Разместить здание
     public bool PlaceBuilding(Vector2I gridPos, BuildingData data, EntityFaction faction = EntityFaction.Player)
     {
         if (_structureMap == null || data == null) return false;
-        if (!IsSpaceFree(gridPos, data.Size)) return false;
+        if (!Map.CanPlaceBuilding(gridPos, data.Size)) return false;
 
         // 1. Визуал
-        MarkOccupied(gridPos, data.Size, data.TileId);
-
-        // 2. Логика
         var logic = CreateLogic(data.Name);
         if (logic == null)
         {
-            ClearOccupied(gridPos, data.Size);
             return false;
         }
-
-        // 3. Сущность
         var entity = new BuildingEntity(gridPos, data, _structureMap, logic, faction);
         entity.OnDestroyed += OnEntityDestroyed;
-        _entities[gridPos] = entity;
+        MarkOccupied(gridPos, entity);
 
         GD.Print($"{data.Name} на {gridPos}");
         return true;
@@ -52,65 +47,63 @@ public partial class BuildingManager : Node
 
     public void RemoveBuilding(Vector2I gridPos)
     {
-        if (!_entities.TryGetValue(gridPos, out var entity)) return;
-        
-        entity.OnDestroyed -= OnEntityDestroyed;
-        entity.Logic.OnDestroyed();
-        ClearOccupied(gridPos, entity.Data.Size);
-        _entities.Remove(gridPos);
+        if (!_entities.TryGetValue(gridPos, out var info)) return;
+        info.Entity.OnDestroyed -= OnEntityDestroyed;
+        info.Entity.Logic.OnDestroyed();
+        ClearOccupied(info.StartPos, info.Entity.Data.Size);
     }
 
     public void UpdateBuildings(double delta)
     {
-        foreach (var entity in _entities.Values)
-            if (entity.IsAlive) entity.UpdateLogic(delta);
+        foreach (var info in _entities.Values)
+            if (info.Entity.IsAlive) info.Entity.UpdateLogic(delta);
     }
 
     public void OnBuildingClicked(Vector2 worldPos)
     {
         if (_structureMap == null) return;
         var gridPos = _structureMap.LocalToMap(worldPos);
-        GetEntityAt(gridPos)?.OnInteract();
+        GetEntityAt(gridPos)?.Entity.OnInteract();
     }
 
 
-    private BuildingEntity GetEntityAt(Vector2I tilePos)
+    public TileInfo GetEntityAt(Vector2I tilePos)
     {
-        if (_entities.TryGetValue(tilePos, out var entity)) return entity;
-        
-        // Поиск по многотайловым зданиям
-        foreach (var kvp in _entities)
-        {
-            var start = kvp.Key;
-            var size = kvp.Value.Data.Size;
-            if (tilePos.X >= start.X && tilePos.X < start.X + size.X &&
-                tilePos.Y >= start.Y && tilePos.Y < start.Y + size.Y)
-                return kvp.Value;
-        }
-        return null;
+        _entities.TryGetValue(tilePos, out var info);
+        return info;
     }
 
-    private bool IsSpaceFree(Vector2I start, Vector2I size)
+    private void MarkOccupied(Vector2I start, BuildingEntity entity)
     {
-        for (int x = 0; x < size.X; x++)
-            for (int y = 0; y < size.Y; y++)
-                if (_structureMap.GetCellSourceId(start + new Vector2I(x, y)) != -1)
-                    return false;
-        return true;
-    }
-
-    private void MarkOccupied(Vector2I start, Vector2I size, int tileId)
-    {
-        for (int x = 0; x < size.X; x++)
-            for (int y = 0; y < size.Y; y++)
-                _structureMap.SetCell(start + new Vector2I(x, y), tileId, new Vector2I(x, y));
+        for (int x = 0; x < entity.Data.Size.X; x++)
+            for (int y = 0; y < entity.Data.Size.Y; y++)
+            {
+                _entities.Add(start + new Vector2I(x, y), new TileInfo(entity,start));
+                _structureMap.SetCell(start + new Vector2I(x, y), entity.Data.TileId, new Vector2I(x, y));
+            }
     }
 
     private void ClearOccupied(Vector2I start, Vector2I size)
     {
         for (int x = 0; x < size.X; x++)
-            for (int y = 0; y < size.Y; y++)
-                _structureMap.SetCell(start + new Vector2I(x, y), -1);
+        for (int y = 0; y < size.Y; y++)
+        {
+            _entities.Remove(start + new Vector2I(x, y));
+            _structureMap.EraseCell(start + new Vector2I(x, y));
+        }
+
+    }
+
+    public class TileInfo
+    {
+        public BuildingEntity Entity;
+        public Vector2I StartPos;
+
+        public TileInfo(BuildingEntity entity, Vector2I startPos)
+        {
+            Entity = entity;
+            StartPos = startPos;
+        }
     }
 
     private void OnEntityDestroyed(BuildingEntity entity) => RemoveBuilding(entity.GridPosition);

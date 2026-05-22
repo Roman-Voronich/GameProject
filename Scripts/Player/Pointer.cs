@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using GameProject;
 
 public partial class Pointer : Panel
 {
@@ -64,19 +65,19 @@ public partial class Pointer : Panel
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (!isRemoveMode) Position = startPos + map.GetTilePos(shift) * 32;
+		if (!isRemoveMode) Position = startPos + Map.GetTilePos(shift) * 32;
 		else
 		{
-			var info = map.GetStructureInfo(map.GlobalToMap(GetGlobalMousePosition()));
-			if (info.Z == 0)
+			var info = BuildingManager.Instance.GetEntityAt(Map.GlobalToMap(GetGlobalMousePosition()));
+			if (info == null)
 			{
-				Position = startPos + map.GetTilePos() * 32;
+				Position = startPos + Map.GetTilePos() * 32;
 				Size = Vector2.One * 36;
 			}
 			else
 			{
-				Position = startPos + new Vector2(info.X, info.Y) * 32;
-				Size = new Vector2(4 + Math.Max(1, info.Z) * 32, 4 + Math.Max(1, info.W) * 32);
+				Position = startPos + info.StartPos * 32;
+				Size = new Vector2(4 + Math.Max(1, info.Entity.Data.Size.X) * 32, 4 + Math.Max(1, info.Entity.Data.Size.X) * 32);
 			}
 		}
 	}

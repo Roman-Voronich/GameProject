@@ -14,17 +14,14 @@ public class BuildAction : ISkillAction
     public void Cast(SkillData skill, Vector2 worldPos, Player player)
     {
         GD.Print("Build action cast");
-        var ui = player.GetParent().GetNode("UI");
-        if (Player.Mode == PlayerMode.Build) Player.Mode = PlayerMode.Nothing;
-        else
+        var ui = player.GetParent().GetNode("UI/Hud");
+        var shopNode = ui.GetNode<Shop>("Shop");
+        if(shopNode == null && Player.Mode == PlayerMode.Nothing)
         {
-            var shopNode = ui.GetNode<Shop>("Shop");
-            if (shopNode != null) shopNode.ExitButtonPressed();
-            else
-            {
-                var shop = _shop.Instantiate<Shop>();
-                ui.AddChild(shop);
-            }
+            var shop = _shop.Instantiate<Shop>();
+            ui.AddChild(shop);
         }
+        if(shopNode != null) shopNode.ExitButtonPressed();
+        if (Player.Mode == PlayerMode.Build) Player.Mode = PlayerMode.Nothing;
     }
 }
