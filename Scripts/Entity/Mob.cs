@@ -22,8 +22,10 @@ public abstract partial class Mob : CharacterBody2D, IEntity
     private float _attackTimer;
     private MobState _currentState = MobState.Idle;
     private IEntity _currentTarget;
-    private List<Mob> _enemiesInRange = new List<Mob>();
+    private List<IEntity> _enemiesInRange = new List<IEntity>();
     private IEntity _absoluteTarget;
+
+    private bool _isFirstAttack = true;
     // ==================== КОМПОНЕНТЫ ====================
     private HealthBar _healthBar;
     private NavigationAgent2D _navAgent;
@@ -94,13 +96,9 @@ public abstract partial class Mob : CharacterBody2D, IEntity
     // ==================== ЛОГИКА СОСТОЯНИЙ ====================
     private void ProcessIdle()
     {
-        
-        if (_enemiesInRange.Count > 0)
-        {
-            _currentTarget = FindNearestEnemy();
-            if (_currentTarget != null)
-                _currentState = MobState.Chase;
-        }
+        _currentTarget = FindNearestEnemy();
+        if (_currentTarget != null)
+            _currentState = MobState.Chase;
     }
     
     private void ProcessChase()
@@ -147,21 +145,22 @@ public abstract partial class Mob : CharacterBody2D, IEntity
         
         float distance = GlobalPosition.DistanceTo(_currentTarget.GlobalPosition);
         
-        if (distance > AttackRange + 20f)
+        if (distance > AttackRange + 2f)
         {
             _currentState = MobState.Chase;
             return;
         }
         
         _attackTimer += (float)delta;
-        if (_attackTimer >= AttackCooldown)
+        if (_attackTimer >= AttackCooldown || _isFirstAttack)
         {
             _attackTimer = 0f;
             _currentTarget.TakeDamage(Damage, this);
-            
+            _isFirstAttack = false;
             // Если цель умерла - сразу ищем нового
             if (!_currentTarget.IsAlive)
             {
+                _isFirstAttack = true;
                 _currentTarget = FindNearestEnemy();
                 if (_currentTarget == null)
                 {
@@ -177,9 +176,10 @@ public abstract partial class Mob : CharacterBody2D, IEntity
     
     private void ProcessMove()
     {
-        if (_enemiesInRange.Count > 0)
+        _currentTarget = FindNearestEnemy();
+        if (_currentTarget !=null)
         {
-            _currentTarget = FindNearestEnemy();
+            _navAgent.TargetPosition = _currentTarget.GlobalPosition;
             _currentState = MobState.Chase;
             return;
         }
@@ -200,7 +200,7 @@ public abstract partial class Mob : CharacterBody2D, IEntity
     private void OnBodyEntered(Node2D body)
     {
         
-        if (body == this || _currentState==MobState.Chase || _currentState==MobState.Attack)
+        if (body == this)
         {
             return;
         }
@@ -222,15 +222,16 @@ public abstract partial class Mob : CharacterBody2D, IEntity
         }
     }
     
-    private Mob FindNearestEnemy()
+    private IEntity FindNearestEnemy()
     {
         
-        Mob nearest = null;
+        IEntity nearest = null;
         float minDist = float.MaxValue;
+        if (_enemiesInRange.Count == 0) return _absoluteTarget; 
         
         foreach (var enemy in _enemiesInRange)
         {
-            if (!enemy.IsAlive)
+            if (!enemy.IsAlive || enemy == null)
             {
                 continue;
             }
@@ -287,7 +288,27 @@ public abstract partial class Mob : CharacterBody2D, IEntity
         _navAgent.TargetPosition = target;
         _currentState = MobState.Move;
     }
-    
+
+    public void Select()
+    {
+        _sprite.Texture = GD.Load<Texture2D>("res://Textures/SelectedAlly.png");
+    }
+
+    public void Unselect()
+    {
+        _sprite.Texture = GD.Load<Texture2D>("res://Textures/Ally.png");
+    }
+
+    public void SetUpTarget(Mob target)
+    {
+        _absoluteTarget = target;
+    }
+
+    public void SetOffTarget()
+    {
+        _absoluteTarget = null;
+        GD.Print(1);
+    }
     private void Die()
     {
         _currentState = MobState.Death;

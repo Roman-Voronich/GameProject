@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://d8m5vty3fupw" path="res://Scripts/Map/Map.cs" id="2_2ooml"]
 [ext_resource type="Script" uid="uid://byhj5wk0hkuxp" path="res://Scripts/Player/PlayerClickHandler.cs" id="2_gwne5"]
 [ext_resource type="Script" uid="uid://lqtfersr8wxp" path="res://Scripts/Player/Player.cs" id="3_hh5uf"]
+[ext_resource type="Script" uid="uid://dcl3ha1v8lp0x" path="res://Scripts/Player/PlayerCommandClickHAndler.cs" id="3_hpu6p"]
 [ext_resource type="Script" uid="uid://dbejn1el2t2hu" path="res://Scripts/Map/TerrianMap.cs" id="3_wjtap"]
 [ext_resource type="TileSet" uid="uid://bda5atx6i8f5b" path="res://Resources/Terrian.tres" id="4_wjtap"]
 [ext_resource type="Script" uid="uid://bsl5r33pdalxu" path="res://Scripts/Map/ResourceMap.cs" id="5_v7gqg"]
@@ -15,8 +16,7 @@
 [ext_resource type="Script" uid="uid://c41lwo405cust" path="res://Scripts/Map/StructureMap.cs" id="9_p20hg"]
 [ext_resource type="PackedScene" uid="uid://cuaci45iqp0q3" path="res://Scenes/UI/HUD.tscn" id="13_he4j0"]
 [ext_resource type="PackedScene" uid="uid://bl0qfldwj7svk" path="res://Scenes/Enemy_Spawner.tscn" id="14_85gyg"]
-[ext_resource type="PackedScene" uid="uid://bjdin8sp863dh" path="res://Scenes/Friendly_Melee_Mob.tscn" id="15_c32x4"]
-[ext_resource type="PackedScene" uid="uid://bfmyj5xhse4kj" path="res://Scenes/Enemy_Melee_Mob.tscn" id="16_fg7i4"]
+[ext_resource type="PackedScene" uid="uid://bspytdel0rifv" path="res://Scenes/Units_Spawner.tscn" id="17_gwne5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wjtap"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -31,7 +31,7 @@ corner_radius_bottom_right = 2
 corner_radius_bottom_left = 2
 
 [node name="Node2D" type="Node2D" unique_id=1168191129]
-position = Vector2(384, 1296)
+position = Vector2(383, 1291)
 
 [node name="Player" type="Node2D" parent="." unique_id=1076933366 groups=["Player"]]
 unique_name_in_owner = true
@@ -41,10 +41,12 @@ script = ExtResource("3_hh5uf")
 [node name="Camera" type="Camera2D" parent="Player" unique_id=305639191]
 position_smoothing_enabled = true
 
-[node name="PlayerClickHandler" type="Node2D" parent="Player" unique_id=1469847136]
+[node name="PlayerAttackClickHandler" type="Node2D" parent="Player" unique_id=1469847136]
 script = ExtResource("2_gwne5")
-AttackDamage = 10
-AttackCooldown = 2.0
+AttackDamage = 7
+
+[node name="PlayerCommandClickHAndler" type="Node2D" parent="Player" unique_id=1627259330]
+script = ExtResource("3_hpu6p")
 
 [node name="Map" type="Node2D" parent="." unique_id=146244086]
 position = Vector2(-384, -216)
@@ -92,13 +94,8 @@ script = ExtResource("8_chwn1")
 [node name="Hud" parent="UI" unique_id=1317377229 instance=ExtResource("13_he4j0")]
 mouse_filter = 2
 
-[node name="EnemyMeleeMob" parent="." unique_id=692986940 instance=ExtResource("16_fg7i4")]
-position = Vector2(-62, 363)
-AttackRange = 1000.0
-
-[node name="Node2D" parent="." unique_id=1917453868 instance=ExtResource("14_85gyg")]
+[node name="EnemySpawner" parent="." unique_id=1917453868 instance=ExtResource("14_85gyg")]
 position = Vector2(193, 558)
 
-[node name="FriendlyMeleeMob" parent="." unique_id=1821161301 instance=ExtResource("15_c32x4")]
-position = Vector2(-141.00002, 438.99997)
-AttackRange = 1000.0
+[node name="UnitsSpawner" parent="." unique_id=1873729584 instance=ExtResource("17_gwne5")]
+position = Vector2(-178, 244)

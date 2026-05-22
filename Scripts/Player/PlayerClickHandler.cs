@@ -41,13 +41,13 @@ public partial class PlayerClickHandler : Node
         var parameters = new PhysicsPointQueryParameters2D
         {
             Position = globalPosition,
-            CollisionMask = 1,
+            CollisionMask = 2,
             CollideWithBodies = true, // Твой Mob это CharacterBody2D (Body)
             CollideWithAreas = true
         };
         
         var results = spaceState.IntersectPoint(parameters);
-        
+        results.Reverse();
         foreach (var result in results)
         {
             if (result["collider"].As<GodotObject>() is Mob mob)

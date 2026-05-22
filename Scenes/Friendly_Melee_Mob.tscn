@@ -12,15 +12,21 @@ size = Vector2(61.250023, 65.00001)
 
 [node name="FriendlyMeleeMob" type="CharacterBody2D" unique_id=1821161301]
 scale = Vector2(0.8, 0.8)
-collision_layer = 3
+collision_layer = 2
 script = ExtResource("1_18ecy")
+Name = "Unit"
 Faction = 0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1506957582]
+path_max_distance = 514.0
+simplify_path = true
 avoidance_enabled = true
+time_horizon_obstacles = 5.0
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=1952358607]
-collision_layer = 3
+process_mode = 3
+collision_layer = 8
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=405216611]
 visible = false
@@ -40,7 +46,7 @@ texture = ExtResource("2_18ecy")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=278375859]
 position = Vector2(-2.029419, 0)
-scale = Vector2(1.0385638, 1)
+scale = Vector2(1.0793885, 1.0289756)
 polygon = PackedVector2Array(-23.749998, -26.249998, -23.749998, -27.499998, -23.749998, -27.499998, -22.499998, -27.499998, -21.249998, -29.999996, -11.249999, -29.999996, -9.999999, -26.249998, -9.999999, -13.749999, -13.749999, -9.999999, 0, -11.249999, -8.749999, -18.749998, -8.749999, -26.249998, -2.4999998, -32.499996, 16.249998, -32.499996, 22.499998, -24.999998, 22.499998, -12.499999, 34.999996, -3.7499995, 34.999996, 11.249999, 22.499998, 11.249999, 13.749999, 1.2499999, 21.249998, 28.749998, 18.749998, 34.999996, -23.749998, 32.499996)
 
 [node name="ClickArea" type="Area2D" parent="." unique_id=1970067482]

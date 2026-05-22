@@ -12,8 +12,9 @@ size = Vector2(55.000015, 65.00001)
 
 [node name="EnemyMeleeMob" type="CharacterBody2D" unique_id=1821161301]
 scale = Vector2(0.8, 0.8)
-collision_layer = 3
+collision_layer = 2
 script = ExtResource("1_ciheo")
+Name = "Enemy"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1506957582]
 path_max_distance = 216.0
@@ -23,8 +24,8 @@ radius = 21.54
 neighbor_distance = 606.25
 
 [node name="DetectionArea" type="Area2D" parent="." unique_id=1952358607]
-collision_layer = 8
-collision_mask = 2
+collision_layer = 2
+collision_mask = 8
 input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=405216611]

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://bspytdel0rifv"]
+
+[ext_resource type="Script" uid="uid://dkjy0ldblfh5f" path="res://Scripts/Entity/Spawner.cs" id="1_wmlsp"]
+[ext_resource type="PackedScene" uid="uid://bjdin8sp863dh" path="res://Scenes/Friendly_Melee_Mob.tscn" id="2_5igij"]
+
+[node name="Node2D" type="Node2D" unique_id=1873729584]
+script = ExtResource("1_wmlsp")
+MobToSpawn = ExtResource("2_5igij")
