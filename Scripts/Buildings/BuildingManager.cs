@@ -7,7 +7,8 @@ public partial class BuildingManager : Node
 {
     public static BuildingManager Instance { get; private set; }
 
-    private TileMapLayer _structureMap;
+    private StructureMap _structureMap;
+    private Map _map;
     private Dictionary<Vector2I, TileInfo> _entities = new();
 
     public override void _Ready()
@@ -18,13 +19,13 @@ public partial class BuildingManager : Node
 
     private void AutoFindMap()
     {
-        _structureMap = GetNode<TileMapLayer>("/root/Game/Map/StructureMap");
-        
+        _structureMap = GetNode<StructureMap>("/root/Game/Map/StructureMap");
+        _map = _structureMap.GetParent<Map>();
         if (_structureMap == null)
             GD.PrintErr("BuildingManager: StructureMap не найден!");
     }
 
-    /// 🏗 Разместить здание
+    ///Разместить здание
     public bool PlaceBuilding(Vector2I gridPos, BuildingData data, EntityFaction faction = EntityFaction.Player)
     {
         if (_structureMap == null || data == null) return false;
@@ -66,20 +67,10 @@ public partial class BuildingManager : Node
     }
 
 
-    private TileInfo GetEntityAt(Vector2I tilePos)
+    public TileInfo GetEntityAt(Vector2I tilePos)
     {
-        if (_entities.TryGetValue(tilePos, out var entity)) return entity;
-        
-        // Поиск по многотайловым зданиям
-        foreach (var kvp in _entities)
-        {
-            var start = kvp.Key;
-            var size = kvp.Value.Entity.Data.Size;
-            if (tilePos.X >= start.X && tilePos.X < start.X + size.X &&
-                tilePos.Y >= start.Y && tilePos.Y < start.Y + size.Y)
-                return kvp.Value;
-        }
-        return null;
+        _entities.TryGetValue(tilePos, out var info);
+        return info;
     }
 
     private bool IsSpaceFree(Vector2I start, Vector2I size)
@@ -106,13 +97,13 @@ public partial class BuildingManager : Node
         for (int x = 0; x < size.X; x++)
         for (int y = 0; y < size.Y; y++)
         {
-            _entities.Remove(new Vector2I(x, y));
+            _entities.Remove(start + new Vector2I(x, y));
             _structureMap.EraseCell(start + new Vector2I(x, y));
         }
 
     }
 
-    private class TileInfo
+    public class TileInfo
     {
         public BuildingEntity Entity;
         public Vector2I StartPos;

@@ -15,13 +15,13 @@ public class BuildAction : ISkillAction
     {
         GD.Print("Build action cast");
         var ui = player.GetParent().GetNode("UI");
-        if (Player.Mode == PlayerMode.Build) Player.Mode = PlayerMode.Nothing;
-        else
+        var shopNode = ui.GetNode<Shop>("Shop");
+        if(shopNode == null && Player.Mode == PlayerMode.Nothing)
         {
             var shop = _shop.Instantiate<Shop>();
             ui.AddChild(shop);
         }
-        if (shopNode != null) shopNode.ExitButtonPressed();
-        if(player.isBuildMode)player.ChangeMode();
+        if(shopNode != null) shopNode.ExitButtonPressed();
+        if (Player.Mode == PlayerMode.Build) Player.Mode = PlayerMode.Nothing;
     }
 }
