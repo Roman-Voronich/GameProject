@@ -7,7 +7,7 @@ public class BuildingEntity : IEntity
 {
     // ---- IEntity ----
     public string Name { get; private set; }
-    public Vector2 GlobalPosition => _structureMap?.MapToLocal(_gridPos) ?? Vector2.Zero;
+    public Vector2 GlobalPosition => _structureMap?.MapToLocal(_gridPos) ?? Vector2.Zero; // это только относительно самой карты
     
     public int MaxHealth { get; private set; }
     public bool IsAlive => _currentHealth > 0;

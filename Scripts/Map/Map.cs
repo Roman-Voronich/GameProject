@@ -24,7 +24,7 @@ public partial class Map : Node2D
 		terrianMap = GetNode<TerrianMap>(new NodePath("TerrianMap"));
 		resourceMap = GetNode<ResourceMap>(new NodePath("ResourceMap"));
 		structureMap = GetNode<StructureMap>(new NodePath("StructureMap"));
-		
+
 		terrianMap.GenerateMap(width, height, noise, seed);
 		resourceMap.GenerateMap(width, height, noise, seed);
 		structureMap.GenerateMap(terrianMap, resourceMap, width, height);
