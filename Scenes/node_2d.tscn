@@ -48,7 +48,7 @@ script = ExtResource("1_gwne5")
 
 [node name="Player" type="Node2D" parent="." unique_id=1076933366 groups=["Player"]]
 unique_name_in_owner = true
-position = Vector2(960, 540)
+position = Vector2(1754, 1936)
 script = ExtResource("3_hh5uf")
 
 [node name="Camera" type="Camera2D" parent="Player" unique_id=305639191]

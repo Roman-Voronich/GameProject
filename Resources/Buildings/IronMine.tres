@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="BuildingData" format=3 uid="uid://c0yrfma3r0olr"]
+
+[ext_resource type="Texture2D" uid="uid://b57cuhplji4ni" path="res://TileSets/IronMine.png" id="1_f4mlq"]
+[ext_resource type="Script" uid="uid://d2ttslk0bo70o" path="res://Scripts/Datas/BuildingData.cs" id="1_lgefx"]
+
+[resource]
+script = ExtResource("1_lgefx")
+Name = "IronMine"
+Icon = ExtResource("1_f4mlq")
+TileId = 2
+Size = Vector2i(3, 3)
+Cost = PackedInt32Array(50, 35, 10, 15)
+Description = "Производит 5 железа в минуту"
+metadata/_custom_type_script = "uid://d2ttslk0bo70o"

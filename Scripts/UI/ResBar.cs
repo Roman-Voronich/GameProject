@@ -11,6 +11,7 @@ public partial class ResBar : HBoxContainer
 	{
 		ReBuild();
 		Inventory.InventoryChange += Update;
+		Inventory.PassiveIncomeChange += UpdateIncome;
 	}
 
 	public void ReBuild()
@@ -38,6 +39,15 @@ public partial class ResBar : HBoxContainer
 		{
 			if (child.Data.Name != Enum.GetName<ResourceType>(resource)) continue;
 			child.Update(Inventory.GetCountResource(resource));
+		}
+	}
+
+	public void UpdateIncome(ResourceType resource, float count)
+	{
+		foreach (ResSlot child in GetChildren())
+		{
+			if (child.Data.Name != Enum.GetName<ResourceType>(resource)) continue;
+			child.UpdateIncome(Inventory.GetPassiveIncome(resource));
 		}
 	}
 

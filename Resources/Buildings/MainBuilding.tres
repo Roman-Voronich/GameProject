@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BuildingData" format=3 uid="uid://csgfp405hlxdk"]
+
+[ext_resource type="Script" uid="uid://d2ttslk0bo70o" path="res://Scripts/Datas/BuildingData.cs" id="1_62dxw"]
+[ext_resource type="Texture2D" uid="uid://8uudujox0swc" path="res://TileSets/Main.png" id="1_u0g5d"]
+
+[resource]
+script = ExtResource("1_62dxw")
+Name = "MainBuilding"
+Icon = ExtResource("1_u0g5d")
+TileId = 4
+Size = Vector2i(4, 4)
+Description = "Главное здание"
+metadata/_custom_type_script = "uid://d2ttslk0bo70o"

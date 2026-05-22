@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="BuildingData" format=3 uid="uid://dye5uk4sj0hch"]
+
+[ext_resource type="Script" uid="uid://d2ttslk0bo70o" path="res://Scripts/Datas/BuildingData.cs" id="1_tanlr"]
+[ext_resource type="Texture2D" uid="uid://b3of1qrh0k6v1" path="res://TileSets/CopperMine.png" id="1_yutq2"]
+
+[resource]
+script = ExtResource("1_tanlr")
+Name = "CopperMine"
+Icon = ExtResource("1_yutq2")
+Size = Vector2i(3, 3)
+Cost = PackedInt32Array(80, 30, 30, 0)
+Description = "Производит 9 меди  каждую минуту"
+metadata/_custom_type_script = "uid://d2ttslk0bo70o"
