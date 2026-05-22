@@ -15,16 +15,18 @@ public class BuildAction : ISkillAction
     {
         GD.Print("Build action cast");
         var ui = player.GetParent().GetNode("UI");
+<<<<<<< HEAD
         if (Player.Mode == PlayerMode.Build) Player.Mode = PlayerMode.Nothing;
         else
+=======
+        var shopNode = ui.GetNode<Shop>("Shop");
+        if(shopNode == null && !player.isBuildMode)
+>>>>>>> c7fd345 (Исправил уничтожение зданий)
         {
-            var shopNode = ui.GetNode<Shop>("Shop");
-            if (shopNode != null) shopNode.ExitButtonPressed();
-            else
-            {
-                var shop = _shop.Instantiate<Shop>();
-                ui.AddChild(shop);
-            }
+            var shop = _shop.Instantiate<Shop>();
+            ui.AddChild(shop);
         }
+        if (shopNode != null) shopNode.ExitButtonPressed();
+        if(player.isBuildMode)player.ChangeMode();
     }
 }
