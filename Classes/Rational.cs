@@ -14,6 +14,7 @@ public struct Rational
     {
         Whole = whole + fraction / denumerator;
         Fraction = fraction % denumerator;
+        this.denumerator = denumerator;
     }
 
     public void AddFraction(int fraction)
