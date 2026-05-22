@@ -20,7 +20,7 @@ public partial class Inventory : Node
         for (var i = 0; i < countRes; i++)
         {
             inventory[i] = new Rational(tps * 60);
-            /*if (EngineDebugger.IsActive())*/ inventory[i] += 1000;
+            if (EngineDebugger.IsActive()) inventory[i] += 1000;
             passiveIncome[i] = new Rational(tps * 60);
         }
     }
