@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class Player : Node2D
 {
 	private Vector2I currentTile = new(0, 0);
-	private Structure currentStructure = new(2, 2, 1, 0);
+	public BuildingData currentStructure;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

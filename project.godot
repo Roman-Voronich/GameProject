@@ -19,6 +19,7 @@ config/icon="res://Textures/icon.svg"
 
 SkillSystem="*uid://bj4wetocwptii"
 Inventory="*uid://bi50nnd4qf1i6"
+BuildingManager="*uid://bykb6rj88d2os"
 
 [display]
 
@@ -97,6 +98,14 @@ ui_change_tile={
 [internationalization]
 
 rendering/root_node_layout_direction=3
+
+[layer_names]
+
+2d_physics/layer_1="world"
+2d_physics/layer_2="enemies"
+2d_physics/layer_3="player"
+2d_physics/layer_4="vision_area"
+2d_physics/layer_5="clickable_area"
 
 [physics]
 

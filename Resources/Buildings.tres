@@ -1,15 +1,19 @@
 [gd_resource type="TileSet" format=3 uid="uid://cd1qbgr15q0i4"]
 
-[ext_resource type="Texture2D" uid="uid://darkcdrafvl05" path="res://TileSets/test2.svg" id="1_mhsjb"]
+[ext_resource type="Texture2D" uid="uid://ddfgdhk5k27ih" path="res://Textures/cave.png" id="1_mhsjb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aovl8"]
 texture = ExtResource("1_mhsjb")
 texture_region_size = Vector2i(32, 32)
-0:0/0 = 0
 1:0/0 = 0
+2:0/0 = 0
+0:1/0 = 0
 1:1/0 = 0
 2:1/0 = 0
-2:0/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:0/0 = 0
 
 [resource]
 tile_size = Vector2i(32, 32)

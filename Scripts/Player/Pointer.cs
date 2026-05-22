@@ -16,7 +16,7 @@ public partial class Pointer : Panel
 		styleBox = GetThemeStylebox("panel") as StyleBoxFlat;
 	}
 
-	public void ChangeMode(bool isRemoveMode, Structure currentStructure)
+	public void ChangeMode(bool isRemoveMode, BuildingData currentStructure)
 	{
 		this.isRemoveMode = isRemoveMode;
 		if (isRemoveMode) styleBox.BorderColor = new Color(0xFF0000FF);
@@ -47,7 +47,7 @@ public partial class Pointer : Panel
 		}
 	}
 
-	public void ChangePointer(Structure structure)
+	public void ChangePointer(BuildingData structure)
 	{
 		Size = new Vector2(4, 4) + structure.Size * 32;
 		shift = (structure.Size - Vector2I.One) * -16;

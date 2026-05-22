@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://drjli6pcspqoj"]
+
+[ext_resource type="Texture2D" uid="uid://btaxu1w64rwm3" path="res://Textures/IronRes.png" id="1_3shwm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_olit3"]
+font_size = 32
+outline_size = 5
+outline_color = Color(0.012617188, 0.012617188, 0.012617188, 1)
+
+[node name="Cost" type="TextureRect" unique_id=2076568681]
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("1_3shwm")
+
+[node name="Label" type="Label" parent="." unique_id=338492511]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = 156.0
+grow_horizontal = 0
+grow_vertical = 2
+label_settings = SubResource("LabelSettings_olit3")
+horizontal_alignment = 2
+vertical_alignment = 1

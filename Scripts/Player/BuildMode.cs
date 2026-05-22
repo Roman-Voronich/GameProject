@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using GameProject;
 
 public partial class Player
 {
@@ -28,17 +29,16 @@ public partial class Player
 
     private void BuildStructure()
     {
-        var temp = GetGlobalMousePosition() - new Vector2I(currentStructure.Width - 1, currentStructure.Height - 1) * 16;
+        var temp = GetGlobalMousePosition() - new Vector2I(currentStructure.Size.X - 1, currentStructure.Size.Y - 1) * 16;
         var startPos = map.GlobalToMap(temp);
-        map.TryBuildStructure(currentStructure, startPos);
+        BuildingManager.Instance.PlaceBuilding(startPos, currentStructure);
+
     }
 
     private void DestroyStructure()
     {
-        var pos = map.GetTilePos();
-        var si = map.GetStructureInfo(pos);
-        if (si.Z == 0) return;
-        map.DestroyStructure(new Vector2I(si.X, si.Y), si.Z, si.W);
+        var coord = map.GlobalToMap(GetGlobalMousePosition());
+        BuildingManager.Instance.RemoveBuilding(coord);
     }
 
     private void DoBuild()
