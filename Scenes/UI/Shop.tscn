@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://ckaatsb2op32e"]
+
+[ext_resource type="Script" uid="uid://b3va6gp0og11b" path="res://Scripts/UI/Shop.cs" id="1_kk4ix"]
+[ext_resource type="Resource" uid="uid://dax250eudmesl" path="res://Resources/Buildings/Mine.tres" id="2_meyip"]
+[ext_resource type="Texture2D" uid="uid://cinwlp208t50t" path="res://Textures/Destroy.png" id="4_cjtqb"]
+
+[node name="Shop" type="Control" unique_id=18152731]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 84.0
+offset_top = 74.0
+offset_right = -95.0
+offset_bottom = -119.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kk4ix")
+buildings = Array[Object]([ExtResource("2_meyip")])
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=322893713]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+columns = 6
+
+[node name="ExitButton" type="Button" parent="." unique_id=831971765]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -72.0
+offset_bottom = 72.0
+grow_horizontal = 0
+icon = ExtResource("4_cjtqb")

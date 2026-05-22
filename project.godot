@@ -18,11 +18,14 @@ config/icon="res://Textures/icon.svg"
 [autoload]
 
 SkillSystem="*uid://bj4wetocwptii"
+Inventory="*uid://bi50nnd4qf1i6"
+BuildingManager="*uid://bykb6rj88d2os"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="uid://cax0q5aly2nqe"
 mouse_cursor/custom_image_hotspot=Vector2(16, 16)

@@ -24,7 +24,8 @@ public abstract partial class Mob : CharacterBody2D, IEntity
     private IEntity _currentTarget;
     private List<IEntity> _enemiesInRange = new List<IEntity>();
     private IEntity _absoluteTarget;
-
+    private Dictionary<IEntity, Vector2> _targetOffsets = new Dictionary<IEntity, Vector2>();
+    private float _offsetRadius = 30f;
     private bool _isFirstAttack = true;
     // ==================== КОМПОНЕНТЫ ====================
     private HealthBar _healthBar;
@@ -122,7 +123,17 @@ public abstract partial class Mob : CharacterBody2D, IEntity
         }
         else
         {
-            _navAgent.TargetPosition = _currentTarget.GlobalPosition;
+            if (!_targetOffsets.ContainsKey(_currentTarget))
+            {
+                Vector2 randomOffset = new Vector2(
+                    (float)(GD.Randf() - 0.5f) * _offsetRadius * 2,
+                    (float)(GD.Randf() - 0.5f) * _offsetRadius * 2
+                );
+                _targetOffsets[_currentTarget] = randomOffset;
+            }
+        
+            Vector2 targetWithOffset = _currentTarget.GlobalPosition + _targetOffsets[_currentTarget];
+            _navAgent.TargetPosition = targetWithOffset;
             Vector2 direction = (_navAgent.GetNextPathPosition() - GlobalPosition).Normalized();
             Velocity = direction * Speed;
             MoveAndSlide();
@@ -285,6 +296,7 @@ public abstract partial class Mob : CharacterBody2D, IEntity
     
     public void MoveTo(Vector2 target)
     {
+        return;
         _navAgent.TargetPosition = target;
         _currentState = MobState.Move;
     }

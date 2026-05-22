@@ -1,47 +1,48 @@
 using Godot;
 using System;
+using GameProject;
 
 public partial class Player
 {
     private Map map;
-    public bool isBuildMode = false;
-    public bool isRemoveMode = false;
+    public static event Action<PlayerMode> ModeChanged;
+    private static PlayerMode _mode;
+
+    public static PlayerMode Mode
+    {
+        get => _mode;
+        set
+        {
+            if (_mode == value) return;
+            _mode = value;
+
+            ModeChanged?.Invoke(value);
+        }
+    }
     private bool isManyChange = false;
-    private Pointer pointer;
 
     private void ChangeMap()
 	{
-        if (isRemoveMode) DestroyStructure();
+        if (Mode == PlayerMode.Destroy) DestroyStructure();
 		else BuildStructure();
 	}
 
     private void BuildStructure()
     {
-        var temp = GetGlobalMousePosition() - new Vector2I(currentStructure.Width - 1, currentStructure.Height - 1) * 16;
+        var temp = GetGlobalMousePosition() - new Vector2I(currentStructure.Size.X - 1, currentStructure.Size.Y - 1) * 16;
         var startPos = map.GlobalToMap(temp);
-        map.TryBuildStructure(currentStructure, startPos);
+        BuildingManager.Instance.PlaceBuilding(startPos, currentStructure);
+
     }
 
     private void DestroyStructure()
     {
-        var pos = map.GetTilePos();
-        var si = map.GetStructureInfo(pos);
-        if (si.Z == 0) return;
-        map.DestroyStructure(new Vector2I(si.X, si.Y), si.Z, si.W);
-    }
-
-    public void ChangeMode()
-    {
-        isRemoveMode = false;
-        isManyChange = false;
-        isBuildMode = !isBuildMode;
-        if (isBuildMode) pointer.ChangePointer(currentStructure);
-        else pointer.ResetPointer();
+        var coord = map.GlobalToMap(GetGlobalMousePosition());
+        BuildingManager.Instance.RemoveBuilding(coord);
     }
 
     private void DoBuild()
 	{
-        pointer.ChangeMode(isRemoveMode, currentStructure);
 		if (Input.IsActionJustPressed("ui_left_click")
             || (isManyChange
                 && Input.IsActionPressed("ui_left_click"))

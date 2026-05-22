@@ -26,8 +26,8 @@ public partial class SkillSystem : Node
 	{
 		_skillBar = GetTree().GetFirstNodeInGroup("SkillBar") as SkillBar;
 		
-		GD.Print($"SkillSystem Подключён к SkillBar");
 		_skillBar.SkillUsed += SkillUse;
+		GD.Print($"SkillSystem Подключён к SkillBar");
 	}
 	private void ConnectPlayer()
 	{

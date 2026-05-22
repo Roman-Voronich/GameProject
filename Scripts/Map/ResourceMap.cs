@@ -17,8 +17,7 @@ public partial class ResourceMap : CustomMapLayer
         resource.hp -= damage;
         if (resource.hp <= 0)
         {
-            player.ChangeCountResource(resource.type, resource.count);
-
+            Inventory.ChangeCountResource(resource.type, resource.count);
             EraseCell(position);
             resources[x, y] = null;
             return true;
@@ -36,15 +35,30 @@ public partial class ResourceMap : CustomMapLayer
             {
                 var value = (noise.GetNoise2D(x, y) + 1) / 2;
 				var atlasCoords = new Vector2I(0, 0);
-				if (value > 0.78f)
+				if (value > 0.76f)
                 {
-					atlasCoords = new Vector2I(1, 0);
-                    resources[x, y] = new TileResourceInfo("Stone", 2, 12);
+					var rand = GD.Randf();
+                    if (rand > 0.8) // железо
+                    {
+                        atlasCoords = new Vector2I(0, 1);
+                        resources[x, y] = new TileResourceInfo(ResourceType.Iron, 2, 15);
+                    }
+                    else if (rand > 0.6) // медь
+                    {
+                        atlasCoords = new Vector2I(1, 1);
+                        resources[x, y] = new TileResourceInfo(ResourceType.Copper, 3, 12);
+                    }
+                    else if (rand > 0.2) // камень
+                    {
+                        atlasCoords = new Vector2I(1, 0);
+                        resources[x, y] = new TileResourceInfo(ResourceType.Stone, 4, 6);
+                    }
+                    else continue;
                 }
 				else if (value > 0.6f && value < 0.7f)
                 {
 					atlasCoords = new Vector2I(0, 0);
-                    resources[x, y] = new TileResourceInfo("Wood", 5, 3);
+                    resources[x, y] = new TileResourceInfo(ResourceType.Wood, 5, 3);
                 }
 				else continue;
                 SetCell(new Vector2I(x, y), sourceId, atlasCoords);
