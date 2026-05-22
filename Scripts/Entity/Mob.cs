@@ -289,7 +289,6 @@ public abstract partial class Mob : CharacterBody2D, IEntity
         _currentState = MobState.Move;
         return;
     }
-
     public void Select()
     {
         _sprite.Texture = GD.Load<Texture2D>("res://Textures/SelectedAlly.png");
@@ -300,7 +299,7 @@ public abstract partial class Mob : CharacterBody2D, IEntity
         _sprite.Texture = GD.Load<Texture2D>("res://Textures/Ally.png");
     }
 
-    public void SetUpTarget(Mob target)
+    public void SetUpTarget(IEntity target)
     {
         _absoluteTarget = target;
     }

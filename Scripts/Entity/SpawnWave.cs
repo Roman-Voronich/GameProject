@@ -25,7 +25,9 @@ public partial class SpawnWave : Node2D
     
     private int _spawnedCount = 0;
     private int _needToSpawn = 0;
-    
+
+    private IEntity oo = BuildingManager.Instance.GetEntityAt(new Vector2I(Map.width / 2 - 2, Map.height / 2 - 2))
+        .Entity;
     public override void _Ready()
     {
         _spawners.Add(this);
@@ -92,7 +94,7 @@ public partial class SpawnWave : Node2D
         mob.GlobalPosition = GetRandomOffset();
         
         // Просто говорим мобу кто его цель
-        //mob.SetUpTarget();
+         //mob.SetUpTarget(oo);
         
         mob.Death += () => {
             _aliveEnemies--;

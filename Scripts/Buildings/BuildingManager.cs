@@ -128,6 +128,7 @@ public partial class BuildingManager : Node
        "CopperMine" => new CopperMineLogic(),
        "IronMine" => new IronMine(),
        "MainBuilding" => new MainBuildingLogic(),
+       "Tent" => new TentLogic(),
         _ => null
     };
 }

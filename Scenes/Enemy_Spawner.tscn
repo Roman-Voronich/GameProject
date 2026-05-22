@@ -2,7 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dkjy0ldblfh5f" path="res://Scripts/Entity/Spawner.cs" id="1_i7cfr"]
 [ext_resource type="PackedScene" uid="uid://bfmyj5xhse4kj" path="res://Scenes/Enemy_Melee_Mob.tscn" id="2_si0ot"]
+[ext_resource type="Texture2D" uid="uid://b8nwu6vnag6sx" path="res://Textures/Bosscave.png" id="3_bwsea"]
 
 [node name="Node2D" type="Node2D" unique_id=1917453868]
 script = ExtResource("1_i7cfr")
 MobToSpawn = ExtResource("2_si0ot")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2146825018]
+texture = ExtResource("3_bwsea")
