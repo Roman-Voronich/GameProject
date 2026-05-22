@@ -4,7 +4,6 @@ using GameProject;
 
 public partial class Player
 {
-    private Map map;
     public static event Action<PlayerMode> ModeChanged;
     private static PlayerMode _mode;
 
@@ -30,14 +29,14 @@ public partial class Player
     private void BuildStructure()
     {
         var temp = GetGlobalMousePosition() - new Vector2I(currentStructure.Size.X - 1, currentStructure.Size.Y - 1) * 16;
-        var startPos = map.GlobalToMap(temp);
+        var startPos = Map.GlobalToMap(temp);
         BuildingManager.Instance.PlaceBuilding(startPos, currentStructure);
 
     }
 
     private void DestroyStructure()
     {
-        var coord = map.GlobalToMap(GetGlobalMousePosition());
+        var coord = Map.GlobalToMap(GetGlobalMousePosition());
         BuildingManager.Instance.RemoveBuilding(coord);
     }
 

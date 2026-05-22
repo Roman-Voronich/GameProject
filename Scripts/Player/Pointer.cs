@@ -65,13 +65,13 @@ public partial class Pointer : Panel
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		if (!isRemoveMode) Position = startPos + map.GetTilePos(shift) * 32;
+		if (!isRemoveMode) Position = startPos + Map.GetTilePos(shift) * 32;
 		else
 		{
-			var info = BuildingManager.Instance.GetEntityAt(map.GlobalToMap(GetGlobalMousePosition()));
+			var info = BuildingManager.Instance.GetEntityAt(Map.GlobalToMap(GetGlobalMousePosition()));
 			if (info == null)
 			{
-				Position = startPos + map.GetTilePos() * 32;
+				Position = startPos + Map.GetTilePos() * 32;
 				Size = Vector2.One * 36;
 			}
 			else
