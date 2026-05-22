@@ -42,6 +42,11 @@ public partial class BuildingManager : Node
         MarkOccupied(gridPos, entity);
 
         GD.Print($"{data.Name} на {gridPos}");
+        for (int i = 0; i < 4; i++)
+        {
+            Inventory.ChangeCountResource((ResourceType)i,-data.Cost[i]);
+            if (!Inventory.HaveResource((ResourceType)i, data.Cost[i])) Player.Mode = PlayerMode.Nothing;
+        }
         return true;
     }
 
