@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://d0scxkkyl6reh"]
+
+[ext_resource type="Script" uid="uid://bxmks87wb0sqd" path="res://Scripts/Entity/SpawnWave.cs" id="1_6fy4x"]
+[ext_resource type="PackedScene" uid="uid://bfmyj5xhse4kj" path="res://Scenes/Enemy_Melee_Mob.tscn" id="2_lua0t"]
+[ext_resource type="Texture2D" uid="uid://ddfgdhk5k27ih" path="res://Textures/cave.png" id="2_m0iot"]
+
+[node name="WaveSpawner" type="Node2D" unique_id=1944487933]
+script = ExtResource("1_6fy4x")
+MobPrefab = ExtResource("2_lua0t")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1766916834]
+texture = ExtResource("2_m0iot")

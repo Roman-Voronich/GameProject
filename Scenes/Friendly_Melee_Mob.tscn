@@ -19,6 +19,7 @@ Faction = 0
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1506957582]
 path_max_distance = 514.0
+path_postprocessing = 1
 simplify_path = true
 avoidance_enabled = true
 time_horizon_obstacles = 5.0
