@@ -129,20 +129,24 @@ position = Vector2(193, 558)
 position = Vector2(-141.00002, 438.99997)
 
 [node name="WaveSpawner" parent="." unique_id=1944487933 instance=ExtResource("22_03fgm")]
-position = Vector2(2609, 1361)
+position = Vector2(2609, 1364)
 MobPrefab = ExtResource("16_fg7i4")
 EnemiesPerWave = Array[int]([1, 1, 1, 2, 2])
+WaveDelays = Array[float]([0.0, 60.0, 60.0, 60.0, 60.0])
 
 [node name="WaveSpawner2" parent="." unique_id=1475154446 instance=ExtResource("22_03fgm")]
 position = Vector2(1838, 950)
 MobPrefab = ExtResource("16_fg7i4")
 EnemiesPerWave = Array[int]([0, 2, 2, 0, 2])
+WaveDelays = Array[float]([0.0, 60.0, 60.0, 60.0, 60.0])
 
 [node name="WaveSpawner3" parent="." unique_id=1837635195 instance=ExtResource("22_03fgm")]
 position = Vector2(2272, 2472)
 MobPrefab = ExtResource("16_fg7i4")
 EnemiesPerWave = Array[int]([0, 0, 2, 2, 3])
+WaveDelays = Array[float]([0.0, 60.0, 60.0, 60.0, 63.0])
 
 [node name="WaveSpawner4" parent="." unique_id=375197583 instance=ExtResource("22_03fgm")]
 position = Vector2(1673, 2185)
 EnemiesPerWave = Array[int]([1, 2, 3, 1, 2])
+WaveDelays = Array[float]([0.0, 60.0, 60.0, 60.0, 60.0])
