@@ -4,10 +4,6 @@ using System.Collections.Generic;
 
 public partial class Player : Node2D
 {
-	[Export]
-	private int Speed = 16;
-	private Camera2D camera;
-	private float cameraZoom = 1;
 	private Vector2I currentTile = new(0, 0);
 	private Structure currentStructure = new(2, 2, 1, 0);
 
@@ -15,22 +11,15 @@ public partial class Player : Node2D
 	public override void _Ready()
 	{
 		map = GetNode<Map>(new NodePath("../Map"));
-		camera = GetNode<Camera2D>(new NodePath("Camera"));
-		inventory = new Dictionary<string, int>();
-        pointer = GetNode<Pointer>(new NodePath("../Map/Pointer"));
+		ModeChanged += x => GetNode<Pointer>(new NodePath("../Map/Pointer")).ChangeMode(x, currentStructure);
 	}
 
     public override void _Input(InputEvent @event)
 	{
-		if (@event.IsActionPressed("ui_change_mode"))
-			ChangeMode();
-		if (isBuildMode
-			&& IsKeyJustPressed(@event, Key.E))
-			isRemoveMode = !isRemoveMode;
-		if (isBuildMode
+		if (Mode == PlayerMode.Build
 			&& IsKeyJustPressed(@event, Key.F))
 			isManyChange = !isManyChange;
-		if (!isBuildMode
+		if (Mode == PlayerMode.Nothing
 			&& @event.IsActionPressed("ui_left_click"))
 			map.DigResource(this, 1);
 	}
@@ -43,26 +32,7 @@ public partial class Player : Node2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		DoMove();
-		DoZoom();
-		if (isBuildMode) DoBuild();
-	}
-
-	private void DoZoom()
-	{
-		if (Input.IsActionJustPressed("ui_mouse_scroll_down"))
-			cameraZoom = Math.Max(cameraZoom * 0.8f, 0.5f);
-		if (Input.IsActionJustPressed("ui_mouse_scroll_up"))
-			cameraZoom = Math.Min(cameraZoom * 1.25f, 2f);
-		camera.Zoom += Vector2.One * (cameraZoom - camera.Zoom.X) * 0.2f;
-	}
-
-	private void DoMove()
-	{
-		var direction = new Vector2();
-		direction.X = Input.GetAxis("ui_left", "ui_right");
-		direction.Y = Input.GetAxis("ui_up", "ui_down");
-		direction.Normalized();
-		Position += direction * Speed / camera.Zoom;
+		if (Mode == PlayerMode.Build
+		|| Mode == PlayerMode.Destroy) DoBuild();
 	}
 }

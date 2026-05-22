@@ -7,23 +7,44 @@ public partial class Pointer : Panel
 	private Map map;
 	private Vector2 startPos; 
 	private Vector2 shift;
-	private bool isRemoveMode; 
+	private bool isRemoveMode;
+	private StyleBoxFlat styleBox;
 	public override void _Ready()
 	{
 		map = GetParent<Map>();
 		startPos = Position;
+		styleBox = GetThemeStylebox("panel") as StyleBoxFlat;
 	}
 
 	public void ChangeMode(bool isRemoveMode, Structure currentStructure)
 	{
 		this.isRemoveMode = isRemoveMode;
-		var styleBox = GetThemeStylebox("panel") as StyleBoxFlat;
 		if (isRemoveMode) styleBox.BorderColor = new Color(0xFF0000FF);
 		else {
 			styleBox.BorderColor = new Color(0xFFFF00FF);
 			ChangePointer(currentStructure);
 		}
-		
+	}
+
+	public void ChangeMode(PlayerMode mode, Structure cs)
+	{
+		isRemoveMode = false;
+		Visible = true;
+		switch (mode)
+		{
+			case PlayerMode.Build:
+				ChangePointer(cs);
+				styleBox.BorderColor = new Color(0xFFFF00FF);
+				break;
+			case PlayerMode.Destroy:
+				ResetPointer();
+				styleBox.BorderColor = new Color(0xFF0000FF);
+				isRemoveMode = true;
+				break;
+			default:
+				Visible = false;
+				break;
+		}
 	}
 
 	public void ChangePointer(Structure structure)

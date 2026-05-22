@@ -267,6 +267,7 @@ public abstract partial class Mob : CharacterBody2D
     
     public void MoveTo(Vector2 target)
     {
+        return;
         _navAgent.TargetPosition = target;
         _currentState = MobState.Move;
     }

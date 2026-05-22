@@ -11,7 +11,7 @@ public partial class ResBar : HBoxContainer
 	{
 		ReBuild();
 		_player = GetNode<Player>(new NodePath("/root/Node2D/Player"));
-		_player.InventoryChange += Update;
+		Inventory.InventoryChange += Update;
 	}
 
 	public void ReBuild()
@@ -33,13 +33,19 @@ public partial class ResBar : HBoxContainer
 		}
 	}
 
-	public void Update(string nameResource, int count)
+	public void Update(ResourceType resource, int count)
 	{
 		foreach (ResSlot child in GetChildren())
 		{
-			if (child.Data.Name != nameResource) continue;
-			child.Update(_player.GetCountResource(nameResource));
+			if (child.Data.Name != Enum.GetName<ResourceType>(resource)) continue;
+			child.Update(Inventory.GetCountResource(resource));
 		}
+	}
+
+	public void TotalUpdate()
+	{
+		foreach (var res in Enum.GetValues<ResourceType>())
+			Update(res, 0);
 	}
 
 	public override void _Process(double delta)

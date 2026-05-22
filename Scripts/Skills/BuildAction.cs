@@ -9,9 +9,9 @@ public class BuildAction : ISkillAction
         return true;
     }
 
-    public void Cast(SkillData skill, Vector2 worldPos, Player player)
+    public void Cast(SkillData skill, Vector2 worldPos, Player Player)
     {
-        GD.Print("Build action cast");
-        player.ChangeMode();
+        if (Player.Mode != PlayerMode.Build) Player.Mode = PlayerMode.Build;
+        else Player.Mode = PlayerMode.Nothing;
     }
 }

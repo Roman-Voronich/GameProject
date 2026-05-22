@@ -9,9 +9,9 @@ public class DestroyAction : ISkillAction
         return true;
     }
 
-    public void Cast(SkillData skill, Vector2 worldPos, Player player)
+    public void Cast(SkillData skill, Vector2 worldPos, Player Player)
     {
-        if(!player.isBuildMode || player.isRemoveMode) player.ChangeMode();
-        player.isRemoveMode = !player.isRemoveMode;
+        if (Player.Mode != PlayerMode.Destroy) Player.Mode = PlayerMode.Destroy;
+        else Player.Mode = PlayerMode.Nothing;
     }
 }
