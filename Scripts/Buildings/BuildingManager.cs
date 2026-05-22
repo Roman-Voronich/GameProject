@@ -15,6 +15,13 @@ public partial class BuildingManager : Node
     {
         Instance = this;
         CallDeferred(nameof(AutoFindMap));
+        CallDeferred(nameof(placeMain));
+    }
+
+    private void placeMain()
+    {
+        var data = GD.Load<BuildingData>("res://Resources/Buildings/MainBuilding.tres");
+        PlaceBuilding(new Vector2I(Map.width/2 -2 , Map.height/2 -2),data,EntityFaction.Player);
     }
 
     private void AutoFindMap()
@@ -53,6 +60,7 @@ public partial class BuildingManager : Node
     public void RemoveBuilding(Vector2I gridPos)
     {
         if (!_entities.TryGetValue(gridPos, out var info)) return;
+        if (info.Entity.Data.Name == "MainBuilding") return;
         info.Entity.OnDestroyed -= OnEntityDestroyed;
         info.Entity.Logic.OnDestroyed();
         ClearOccupied(info.StartPos, info.Entity.Data.Size);
@@ -117,6 +125,10 @@ public partial class BuildingManager : Node
     {
        "StoneMine" => new StoneMineLogic(),
        "Lumber" => new  LumberLogic(),
+       "CopperMine" => new CopperMineLogic(),
+       "IronMine" => new IronMine(),
+       "MainBuilding" => new MainBuildingLogic(),
+       "Tent" => new TentLogic(),
         _ => null
     };
 }

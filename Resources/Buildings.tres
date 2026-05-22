@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b1sihx8m4nkj6" path="res://TileSets/Lumber.png" id="4_qu6wk"]
 [ext_resource type="Texture2D" uid="uid://8uudujox0swc" path="res://TileSets/Main.png" id="5_ago5i"]
 [ext_resource type="Texture2D" uid="uid://c6o1qymcqdbgh" path="res://TileSets/StoneMine.png" id="6_it3ly"]
+[ext_resource type="Texture2D" uid="uid://bcuxr0l6ix58x" path="res://TileSets/tent.png" id="7_rl1lu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yrtsw"]
 texture = ExtResource("6_it3ly")
@@ -87,6 +88,19 @@ texture_region_size = Vector2i(32, 32)
 2:2/0 = 0
 0:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_53p2s"]
+texture = ExtResource("7_rl1lu")
+texture_region_size = Vector2i(32, 32)
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+0:0/0 = 0
+2:0/0 = 0
+
 [resource]
 tile_size = Vector2i(32, 32)
 sources/1 = SubResource("TileSetAtlasSource_0qvvq")
@@ -95,3 +109,4 @@ sources/3 = SubResource("TileSetAtlasSource_ub00p")
 sources/4 = SubResource("TileSetAtlasSource_32phu")
 sources/0 = SubResource("TileSetAtlasSource_yrtsw")
 sources/5 = SubResource("TileSetAtlasSource_aovl8")
+sources/6 = SubResource("TileSetAtlasSource_53p2s")

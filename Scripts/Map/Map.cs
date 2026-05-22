@@ -5,10 +5,10 @@ using System.Collections.Generic;
 [Tool]
 public partial class Map : Node2D
 {
-	[Export]
-	public int width = 128;
-	[Export]
-	public int height = 128;
+
+	public static int width = 128;
+
+	public static int height = 128;
 	[Export]
 	public FastNoiseLite noise;
 	[Export]

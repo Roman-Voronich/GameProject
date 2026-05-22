@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://brecyqkgmub1r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5qbvn"]
+font_size = 100
+
+[node name="Lose" type="Node2D" unique_id=1052556301]
+
+[node name="Control" type="Control" parent="." unique_id=695958631]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 131.0
+offset_bottom = 112.0
+
+[node name="Label" type="Label" parent="Control" unique_id=128426651]
+z_index = 1
+layout_mode = 0
+offset_left = 597.0
+offset_top = 209.0
+offset_right = 637.0
+offset_bottom = 232.0
+text = "Вы Проиграли"
+label_settings = SubResource("LabelSettings_5qbvn")
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=187627415]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 47.9
+anchor_bottom = 26.95
+offset_left = -539.0
+offset_top = -419.0
+offset_right = -2415.0
+offset_bottom = -1457.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

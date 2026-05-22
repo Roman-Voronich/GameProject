@@ -1,3 +1,4 @@
 # GameProject
 
 [Miro](https://miro.com/welcomeonboard/YXBZOXBoSmprUlRpVkY4emlxbzBiYlgwWHpNU3RHUDk2bjBXL1lxdm5JUmFxVzZHcHErcEV6Uno1WDVycHhqd0lNTnpvSjNKK243YmFyenI3eWdxQVJIT0JjbVp1bEl1OUJQTVdSSXRyQ01ubDZhbEMvbVJieUN5ZDdtZ0R3SSt3VHhHVHd5UWtSM1BidUtUYmxycDRnPT0hdjE=?share_link_id=592047604649)
+[Presentetion](https://docs.google.com/presentation/d/1dTZa9vqqttblijlDJJGKk93530v9fKbUHf0kWcEw8Nw/edit?usp=sharing)
